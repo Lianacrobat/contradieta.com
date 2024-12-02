@@ -433,10 +433,11 @@ footer .social-icons a:hover {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   width: 100%;
-  height: 60%; /* Altura ajustada para el carrusel dentro del contenedor */
-  padding-right: 20px; /* Padding alrededor de las imágenes */
-  box-sizing: border-box; /* Para que el padding no afecte el tamaño total */
+  height: 90%; 
+  gap: 10px;
+  box-sizing: border-box; 
 }
+
 
 /* Estilos de las imágenes */
 .imagen {
