@@ -248,3 +248,44 @@ accordionTitles.forEach(title => {
 
 
 //dffferfgrea
+
+document.addEventListener('DOMContentLoaded', () => {
+  const images = Array.from(document.querySelectorAll('img[src^="src/"]'));
+  const totalImages = images.length;
+  let loadedImages = 0;
+
+  // Función para actualizar el spinner
+  function updateLoadingScreen() {
+    const percentage = Math.floor((loadedImages / totalImages) * 100);
+    document.getElementById('loading-percentage').textContent = `Cargando: ${percentage}%`;
+
+    if (loadedImages === totalImages) {
+      // Mostrar el contenido principal y ocultar el spinner
+      document.getElementById('loading-screen').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      document.getElementById('body').classList.remove('hidden');
+    }
+  }
+
+  // Cargar imágenes y actualizar el spinner
+  images.forEach(img => {
+    const tempImage = new Image();
+    tempImage.src = img.src;
+
+    tempImage.onload = () => {
+      loadedImages++;
+      updateLoadingScreen();
+    };
+
+    tempImage.onerror = () => {
+      console.warn(`No se pudo cargar la imagen: ${img.src}`);
+      loadedImages++;
+      updateLoadingScreen();
+    };
+  });
+
+  // Inicializar el spinner en caso de que no haya imágenes
+  if (totalImages === 0) {
+    updateLoadingScreen();
+  }
+});
