@@ -1,97 +1,83 @@
+/* Estilos globales */
 * {
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, max-height 0.3s ease-out, padding 0.3s ease-out;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Estilos globales */
 body {
-  color: #171717;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #0d0d0d;
   margin: 0;
-  padding: 20px;
-  padding-top: 80px;
-  background-color: #f2eae1;
+  background-color: #ffffff;
+  min-height: 100vh;
+  text-align: center;
 }
 
 .dark-theme {
-  background-color: #171717;
-  color: #fffcfc;
-
+  background-color: #0d0d0d;
+  color: #b2cdc0;
 }
 
-/* ⚠️⚠️⚠️ Header ⚠️⚠️⚠️ */
+/* Header */
 header {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0px 0px 0px 20px;
   width: 100%;
+  height: 80px;
+  padding: 0 20px;
   z-index: 1000;
   display: flex;
+  align-items: center;
+  /* Alineación vertical */
   justify-content: space-between;
-  background-color: #3f6954;
-  color: #ffffff;
+  /* Espaciado entre elementos */
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
-  font-size: 1.2rem;
+.dark-theme header {
+  background-color: #0d0d0d;
 }
 
-header .header-right {
-  display: flex;
-}
-
+/* Select y toggle */
 #language-select {
-  padding: 5px 15px;
   font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #3f6954;
-  background-color: #3f6954;
+  color: #838383;
+  border: 1px none;
+  background-color: transparent;
   cursor: pointer;
-  color: #fffcfc;
 }
 
 #theme-toggle {
-  padding: 8px 12px;
-  font-size: 1.4rem;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 1rem;
+  background: transparent;
   margin-right: 30px;
-}
-
-/* ⚠️⚠️⚠️ botón tema ⚠️⚠️⚠️ */
-button {
-  padding: 10px 20px;
-  background-color: transparent;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
 }
+
 
 /* ⚠️⚠️⚠️ Contenido ⚠️⚠️⚠️ */
-main {
-  padding-bottom: 120px;
-  flex-grow: 1;
+
+.mainContainer {
+  max-width: 800px;
+  width: 100%;
+  padding: 80px 0 120px;
 }
 
-
 /* ⚠️⚠️⚠️ Nutrition head coach ⚠️⚠️⚠️ */
-/* Contenedor de imagen con fondo animado */
 .image-wrapper {
   position: relative;
   background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
   background-size: 300% 300%;
-  animation: gradientBackground 5s infinite;
+  animation: gradientBackground 15s infinite;
   overflow: hidden;
-  border-radius: 10px;
-  width: 100%;
   height: 600px;
-  max-width: 540px;
   margin: 0 auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
 }
 
@@ -109,17 +95,11 @@ main {
 }
 
 /* Tema oscuro */
-.dark-theme .image-wrapper {
-  background: linear-gradient(-45deg, #2e2e2e, #212121, #171717, #4e4e4e);
-  background-size: 300% 300%;
 
-}
 
 /* Estilos generales de texto dentro de la imagen */
 .background-text,
-.timer2,
-.price-section,
-.comprar {
+.timer2 {
   position: absolute;
   width: 90%;
   left: 50%;
@@ -141,44 +121,54 @@ main {
 /* Temporizador */
 .timer2 {
   top: 10%;
-  font-size: 12px;
+  font-size: 1rem;
   color: #fff;
 }
 
 /* Sección de precios y botones */
 .price-section {
+  position: absolute;
+  width: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 2;
   top: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  font-size: 12px;
-  background-color: rgba(255, 255, 255);
+  gap: 20px;
+  font-size: 10pt;
+  background-color: rgba(255, 255, 255, 0.474);
   padding: 10px;
-  border-radius: 50px;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
 }
 
+
 /* Precios */
-
-
 #precioAhora {
-  color: #4caf50;
+  color: #297a2c;
+  font-weight: bold;
+
 }
 
 #descuento {
-  color: #ff6f61;
+  color: #e32311;
+  font-weight: bold;
+
+
 }
 
 #precioAntes {
   text-decoration: line-through;
-  color: #606060;
+  color: #858585;
 }
 
 /* Imagen de perfil */
 .imgProfile {
   display: block;
   width: 100%;
+  max-height: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -191,63 +181,36 @@ main {
   transform: scale(1.02);
 }
 
-.dark-theme .imgProfile {
-  filter: grayscale(0.3);
-  opacity: 70%
-}
-
 /* Botón de compra */
 .comprar {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 5%;
   padding: 10px;
-  width: 70%;
   font-size: 1rem;
   font-weight: bold;
-  color: #ffffff;
-  background-color: rgba(13, 13, 13, 0.45);
-  border: none;
-  border-radius: 50px;
-  text-transform: uppercase;
+  color: #fff;
+  z-index: 2;
+  color: #236C5B;
+  background-color: #51FCD4;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 2px solid #ffffff;
-  /* Borde azul neón */
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
-
-
-.comprar:hover {
-  background-color: rgba(13, 13, 13, 0.68);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.dark-theme .comprar {
-  border: 2px solid #00FFFF;
-  /* Borde azul neón */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-
-}
-
-
 
 
 /* ⚠️⚠️⚠️ Footer ⚠️⚠️⚠️ */
 footer {
   background-color: #ffffff;
-  padding: 5px;
   text-align: center;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   z-index: 1000;
-  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Centra el contenido verticalmente */
 }
 
 footer .social-icons {
@@ -257,8 +220,8 @@ footer .social-icons {
 }
 
 footer .social-icons a {
-  padding: 5px;
-  color: #2980b9;
+  padding: 15px;
+  color: #236C5B;
   text-decoration: none;
 }
 
@@ -266,18 +229,12 @@ footer .social-icons a:hover {
   text-decoration: underline;
 }
 
-.dark-theme footer {
-  background-color: #0d0d0d;
-}
 
+/* ⚠️⚠️⚠️ Estilos básicos del acordeón ⚠️⚠️⚠️ */
 
-/* ⚠️⚠️⚠️ Precios con descuento ⚠️⚠️⚠️ */
-
-
-
-/* Estilos básicos del acordeón */
-.accordion {
-  margin-bottom: 10px;
+#programaCurso{
+  padding: 20px;
+  text-align: left;
 }
 
 /* Título del acordeón */
@@ -289,7 +246,6 @@ footer .social-icons a:hover {
   color: #f9f9f9;
   padding: 10px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
 }
 
 .accordion-title:hover {
@@ -303,17 +259,17 @@ footer .social-icons a:hover {
   overflow: hidden;
   padding: 0 20px;
   list-style-type: none;
-  background-color: #fafafa;
-  border-left: 2px solid #f2eae1;
-  border-right: 2px solid #f2eae1;
+  background-color: #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
   border-bottom: 2px solid #e2d4c3;
-  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+
 }
 
 .dark-theme .accordion-content {
   background-color: #0d0d0d;
-  border-left: 2px solid #171717;
-  border-right: 2px solid #17171717;
+  border-left: 2px solid #0d0d0d;
+  border-right: 2px solid #0d0d0d;
   border-bottom: 2px solid #212121;
 
 }
@@ -350,56 +306,292 @@ footer .social-icons a:hover {
 
 
 
-/* Estilo general para la sección */
+
+
+
+
+
+
+
+/* ⚠️⚠️⚠️ Estilo general para presentación de nutricionista ⚠️⚠️⚠️ */
+
+
+
+
+
+
+
+
+
+/* Contenedor principal */
+.nutri-image-wrapper {
+  position: relative;
+  background: linear-gradient(-45deg, #fceabb, #b8d8bc, #ffe5c6, #fae3d9);
+  background-size: 300% 300%;
+  animation: nutri-gradientBackground 6s infinite;
+  overflow: hidden;
+  width: 100%;
+  height: 600px;
+  /* Más alto para acomodar la imagen grande */
+  max-width: 540px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Fondo animado */
+@keyframes nutri-gradientBackground {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Nombre de la nutricionista */
+.nutri-background-text {
+  position: relative;
+  top: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #212121;
+  text-align: center;
+  z-index: 3;
+  text-transform: uppercase;
+  height: 700px;
+}
+
+/* Botones de redes sociales */
+.nutri-social-buttons {
+  background-color: #ffffff;
+  padding: 15px;
+  position: relative;
+  border-radius: 50px;
+  top: 0%;
+  display: flex;
+  z-index: 3;
+}
+
+.nutri-social-button img {
+  width: 50px;
+  height: 50px;
+}
+
+
+/* Carrusel de diplomas */
+.nutri-carousel {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  z-index: 1;
+  /* Debajo de la imagen de la nutricionista */
+  animation: nutri-diplomasEffect 30s infinite linear;
+}
+
+/* Imagen de perfil */
+.nutri-imgProfile {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 40px;
+  /* Centrada en el contenedor */
+  object-fit: cover;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nutri-imgProfile:hover {
+  transform: scale(1.02);
+}
+
+/* Descripción debajo de la imagen */
+.nutri-description {
+  margin: 20px auto;
+  text-align: center;
+  max-width: 540px;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+/* Carrusel de diplomas minimalista */
+.nutri-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  margin: 20px auto;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 540px;
+}
+
+.nutri-carousel-container {
+  display: flex;
+  gap: 10px;
+}
+
+.nutri-diploma-image {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nutri-diploma-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ⚠️⚠️⚠️ Estilo general para la sección ⚠️⚠️⚠️ */
 .course-section {
   text-align: center;
+  padding: 20px;
 }
 
 .course-section h2 {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 30px;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
 /* Contenedor de las tarjetas */
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas grandes */
+  grid-template-columns: repeat(2, 1fr);
+  /* 2 columnas en pantallas grandes */
   gap: 5px;
   justify-items: center;
 }
 
 .card {
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 12px;
-  padding: 10px;
+  padding: 5px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: left;
-  border: 1px solid #ddd;
+}
+
+.dark-theme .card {
+  background-color: #212121;
+
 }
 
 .card-img {
   width: 100%;
-  height: 120px; /* Altura fija para que la imagen sea cuadrada */
-  object-fit: cover; /* La imagen cubrirá completamente el área sin deformarse */
+  height: 120px;
+  /* Altura fija para que la imagen sea cuadrada */
+  object-fit: cover;
+  /* La imagen cubrirá completamente el área sin deformarse */
   border-radius: 10px;
-  overflow: hidden; /* Asegura que no se vean las partes fuera del contenedor */
+  overflow: hidden;
+  /* Asegura que no se vean las partes fuera del contenedor */
   filter: grayscale(0);
 }
 
 
 .card h3 {
-  font-size: 1rem;
+  font-size: .8rem;
   margin: 5px 0;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .card p {
-  font-size: .8rem;
+  font-size: .7rem;
   color: #555;
   margin-bottom: 5px;
+}
+
+.dark-theme .card p {
+  color: #8f8f8f;
+
 }
 
 
@@ -407,7 +599,6 @@ footer .social-icons a:hover {
   color: green;
 }
 
-/* Efecto hover en las tarjetas */
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -415,7 +606,8 @@ footer .social-icons a:hover {
 
 /* Estilos del contenedor principal */
 .carrusel-container {
-  height: 450px; /* Altura fija del contenedor */
+  height: 450px;
+  /* Altura fija del contenedor */
   background-image: url('./src/backgroundPhone.webp');
   background-size: cover;
   display: flex;
@@ -432,18 +624,18 @@ footer .social-icons a:hover {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: 100%;
-  height: 90%; 
+  width: 90%;
+  height: 90%;
   gap: 10px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
-
 
 /* Estilos de las imágenes */
 .imagen {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Asegura que las imágenes se adapten sin ser recortadas */
+  object-fit: contain;
+  /* Asegura que las imágenes se adapten sin ser recortadas */
   scroll-snap-align: center;
   flex-shrink: 0;
   transition: transform 0.3s ease-in-out;
@@ -459,4 +651,3 @@ footer .social-icons a:hover {
 .carrusel img:focus {
   transform: scale(1.3);
 }
-
