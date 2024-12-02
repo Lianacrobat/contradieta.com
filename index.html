@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutrición</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="body">
+  <!-- Contenedor principal -->
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="header-left">
+        <h1 id="sitioWeb"></h1>
+      </div>
+      <div class="header-right">
+        <select id="language-select" onchange="changeLanguage()">
+          <option value="es">Es</option>
+          <option value="uk" selected>Uk</option>
+          <option value="en">En</option>
+        </select>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">🌙</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="image-wrapper">
+        <p id="nombreCurso" class="background-text"></p>
+        <p id="timer" class="timer2"></p>
+        <div class="price-section">
+          <div id="precioAhora"></div>
+          <div id="descuento">-70%</div>
+          <div id="precioAntes"></div>
+        </div>
+
+        <img src="./src/kat01.png" alt="Contradieta" class="imgProfile">
+
+        <a href="https://secure.wayforpay.com/payment/s6605adc9c1d5?fbclid=PAZXh0bgNhZW0CMTEAAaaCNIgsyYqv9rpiLF32nrw8Oa70u92GV4g6ELoPJTdCB4ejdJtT9vohiws_aem_L-V47e_yF_SNR_lXnjKEgw"
+          class="comprar" target="_blank" id="comprar"></a>
+      </div>
+      <br>
+
+      
+
+
+      
+
+
+
+
+      <div class="carrusel-container">
+        <div class="carrusel">
+          <img src="./src/testimonio001.webp" alt="Testimonio 1" class="imagen">
+          <img src="./src/testimonio002.webp" alt="Testimonio 2" class="imagen">
+          <img src="./src/testimonio003.webp" alt="Testimonio 3" class="imagen">
+          <img src="./src/testimonio004.webp" alt="Testimonio 4" class="imagen">
+          <img src="./src/testimonio005.webp" alt="Testimonio 5" class="imagen">
+          <img src="./src/testimonio006.webp" alt="Testimonio 6" class="imagen">
+          <img src="./src/testimonio007.webp" alt="Testimonio 7" class="imagen">
+        </div>
+        <!-- Botones de navegación -->
+        <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
+        <button class="next" onclick="moveCarousel(1)">&#10095;</button>
+      </div>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+      <section class="course-section">
+        <h2>Este curso es para ti si...</h2>
+        <div class="cards-container">
+            <div class="card">
+                <img src="https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif?cid=790b7611dnpkwuvrxdcpwgmj5i98pzesahbvbp2tirnqd0tb&ep=v1_gifs_trending&rid=giphy.gif&ct=g" alt="Gif relacionado al problema 1" class="card-img">
+                <h3>💥 Has probado todas las dietas, pero no llegas al cuerpo de tus sueños</h3>
+                <p class="solution">Aprende un enfoque sostenible que funcione para ti a largo plazo.</p>
+            </div>
+            <div class="card">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWIzN3R2cTFtZ2p2OGtieHo3Z216bWJteGp6ZmxiYTZiN251ZHRldSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/IBd4FBqsP2hWg/giphy.gif" alt="Gif relacionado al problema 2" class="card-img">
+                <h3>🔄 Tras cada intento, tu peso vuelve a ser el mismo</h3>
+
+                <p class="solution">Te enseñamos a mantener los resultados sin efectos rebote.</p>
+            </div>
+            <div class="card">
+                <img src="https://media.giphy.com/media/l46CBEVQjSJG6mCnC/giphy.gif?cid=790b7611rqpief3l37wlxbhaiqqytadc83m44y795exli0gq&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Gif relacionado al problema 3" class="card-img">
+                <h3>💔 Estás cansada de torturar tu cuerpo y necesitas un cambio</h3>
+                <p class="solution">Nuestro enfoque es saludable, sin sufrimiento y efectivo.</p>
+            </div>
+            <div class="card">
+                <img src="https://media.giphy.com/media/3drmEWeOUgzKg/giphy.gif?cid=ecf05e474z67nossn1h9waj6a26hninals933v0242k1vosm&ep=v1_gifs_related&rid=giphy.gif&ct=g" alt="Gif relacionado al problema 4" class="card-img">
+                <h3>🤯 Tienes mitos sobre la comida y la pérdida de peso</h3>
+                <p class="solution">Desmitificamos todo sobre la nutrición y te damos las respuestas correctas.</p>
+            </div>
+            <div class="card">
+                <img src="https://media.giphy.com/media/wG3jhHKvoCCVG/giphy.gif?cid=790b7611yykbi726qix6vjocanbvg6ia2cszlru4x6x9q1jc&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Gif relacionado al problema 5" class="card-img">
+                <h3>🍔 Pasas mucho tiempo pensando en comida, la divides en buena o mala</h3>
+                <p class="solution">Te enseñamos a disfrutar de la comida de manera balanceada y sin culpas.</p>
+            </div>
+            <div class="card">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXlrYmk3MjZxaXg2dmpvY2FuYnZnNmlhMmNzemxydTR4Nng5cTFqYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/cA0TiRmuetO1szgShj/giphy.gif" alt="Gif relacionado al problema 6" class="card-img">
+                <h3>😞 Crees que nada te ayudará, y que tu cuerpo es irremediable</h3></p>
+                <p class="solution">Te mostramos que es posible cambiar con un enfoque adecuado y efectivo.</p>
+            </div>
+            <div class="card">
+                <img src="https://media.giphy.com/media/WpxOQAMvWdiecRbCr5/giphy.gif?cid=790b761101gosvbhhonfl6k0mhloo75mnctnvwdsg291ryh0&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Gif relacionado al problema 7" class="card-img">
+                <h3>🌿 Quieres perder peso sin comprometer tu salud ni bienestar</h3>
+                <p class="solution">Nuestro curso enseña cómo perder peso sin comprometer tu salud.</p>
+            </div>
+            <div class="card">
+                <img src="https://media.giphy.com/media/gglO1iZFT76UAYDAiR/giphy.gif?cid=ecf05e47c4pbvbo1tgy2e4pxgsus25ddm9r5w44y3r9cor79&ep=v1_gifs_search&rid=giphy.gif&ct=g" class="card-img">
+                <h3>🏆 Quieres que los resultados sean permanentes</h3>
+                <p class="solution">Te enseñamos a mantener los resultados a largo plazo de manera efectiva.</p>
+            </div>
+        </div>
+    </section>
+    
+
+      <!-- 6. PARA QUIEN ES EL CURSO-->
+      <section>
+        <section id="curso-para-ti">
+          <h2 id="cursoParaTi"></h2>
+          <ul>
+            <li id="razonA"></li>
+            <li id="razonB"></li>
+            <li id="razonC"></li>
+            <li id="razonD"></li>
+            <li id="razonE"></li>
+            <li id="razonF"></li>
+            <li id="razonG"></li>
+            <li id="razonH"></li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- 5. QUIEN SOY -->
+      <section>
+        <section id="quiensoy">
+          <h2 id="sobreMi"></h2>
+          <p id="sobreMiDescripcion"></p>
+        </section>
+      </section>
+
+      <!-- 7. porgramaCurso -->
+
+      
+
+      <section id="programaCurso">
+        <h2 id="ProgramaCursoTitulo"></h2>
+
+        <div class="accordion">
+          <h3 id="leccionA" class="accordion-title"></h3>
+          <ul class="accordion-content">
+            <li id="leccionA1"></li>
+            <li id="leccionA2"></li>
+          </ul>
+        </div>
+        <div class="accordion">
+          <h3 id="leccionB" class="accordion-title"></h3>
+          <ul class="accordion-content">
+            <li id="leccionB1"></li>
+          </ul>
+        </div>
+        <div class="accordion">
+          <h3 id="leccionC" class="accordion-title"></h3>
+          <ul class="accordion-content">
+            <li id="leccionC1"></li>
+            <li id="leccionC2"></li>
+            <li id="leccionC3"></li>
+            <li id="leccionC4"></li>
+            <li id="leccionC5"></li>
+          </ul>
+        </div>
+        <div class="accordion">
+          <h3 id="leccionD" class="accordion-title"></h3>
+          <ul class="accordion-content">
+            <li id="leccionD1"></li>
+            <li id="leccionD2"></li>
+          </ul>
+        </div>
+        <div class="accordion">
+          <h3 id="leccionE" class="accordion-title"></h3>
+          <ul class="accordion-content">
+            <li id="leccionE1"></li>
+          </ul>
+        </div>
+        <div class="accordion">
+          <h3 id="leccionF" class="accordion-title"></h3>
+          <ul class="accordion-content">
+            <li id="leccionF1"></li>
+            <li id="leccionF2"></li>
+          </ul>
+        </div>
+        <div class="accordion">
+          <h3 id="leccionG" class="accordion-title"></h3>
+          <ul class="accordion-content">
+            <li id="leccionG1"></li>
+          </ul>
+        </div>
+
+      </section>
+
+
+
+      <!-- 7. porgramaCurso -->
+
+      <section id="">
+        <h3>Після проходження курсу ти:</h3>
+        <p>🍽️ навчишся складати здоровий та смачний раціон, який сприятиме адекватному схудненню</p>
+        <p>🫀 зможеш не тільки схуднути назавжди, а також покращити показники свого здоровʼя</p>
+        <p>🔄 повністю зміниш свій підхід до схуднення</p>
+        <p>🧠 розкладеш по поличках всю інформацію про здорове схуднення та зрозумієш, як діяти ефективно та без
+          зайвого
+          стресу</p>
+        <p>⚡ матимеш більшу кількість енергії та краще самопочуття</p>
+        <p>🍫 навчишся харчуватися без обмежень, не виключаючи свої улюблені продукти з раціону</p>
+        <p>🧘 зможеш відновити звʼязок тіла з розумом та навчишся розуміти своє тіло</p>
+      </section>
+
+
+
+
+      <!-- Footer -->
+      <footer>
+        <div class="contact-info">
+          <p id="footer-email"></p>
+          <p id="footer-phone"></p>
+          <p id="footer-social">Síguenos en redes sociales:</p>
+          <div class="social-icons">
+            <a href="#" id="fb-link" target="_blank">Facebook</a>
+            <a href="#" id="insta-link" target="_blank">Instagram</a>
+            <a href="#" id="insta-link" target="_blank">Telegram</a>
+          </div>
+        </div>
+      </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts.js"></script>
+</body>
+
+</html>
