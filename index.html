@@ -8,9 +8,13 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body id="body">
+<body id="body" class="hidden">
+  <div id="loading-screen">
+    <div id="loading-spinner"></div>
+    <div id="loading-percentage">Cargando: 0%</div>
+  </div>
   <!-- Contenedor principal -->
-  <div class="container">
+  <div class="container" id="main-content" style="display: none;">
 
     <!-- Header -->
     <header>
@@ -38,7 +42,7 @@
           <div id="descuento">-70%</div>
           <div id="precioAntes"></div>
         </div>
-        <img src="./src/kat02.png" alt="Contradieta" class="imgProfile">
+        <img src="./src/kat01.png" alt="Contradieta" class="imgProfile">
         <a href="https://secure.wayforpay.com/payment/s6605adc9c1d5?fbclid=PAZXh0bgNhZW0CMTEAAaaCNIgsyYqv9rpiLF32nrw8Oa70u92GV4g6ELoPJTdCB4ejdJtT9vohiws_aem_L-V47e_yF_SNR_lXnjKEgw"
           class="comprar" target="_blank" id="comprar"></a>
       </div>
@@ -208,13 +212,13 @@
 
       <!-- Footer -->
       <footer>
-          <div class="social-icons">
-            <a href="#" id="fb-link" target="_blank">Facebook</a>
-            <a href="#" id="insta-link" target="_blank">Instagram</a>
-            <a href="#" id="insta-link" target="_blank">Telegram</a>
-          </div>
+        <div class="social-icons">
+          <a href="#" id="fb-link" target="_blank">Facebook</a>
+          <a href="#" id="insta-link" target="_blank">Instagram</a>
+          <a href="#" id="insta-link" target="_blank">Telegram</a>
         </div>
-      </footer>
+  </div>
+  </footer>
   </div>
 
   <!-- Scripts -->
