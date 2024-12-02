@@ -248,29 +248,4 @@ accordionTitles.forEach(title => {
 
 
 //dffferfgrea
-let currentIndex = 0;
-const images = document.querySelectorAll('.imagen');
-const totalImages = images.length;
 
-// Función para mover el carrusel
-function moveCarousel(direction) {
-  currentIndex += direction;
-  
-  if (currentIndex >= totalImages) {
-    currentIndex = 0;
-  } else if (currentIndex < 0) {
-    currentIndex = totalImages - 1;
-  }
-
-  // Desplazar el carrusel a la imagen correcta
-  const offset = currentIndex * 100;
-  document.querySelector('.carrusel').scrollTo({
-    left: offset + '%',
-    behavior: 'smooth'
-  });
-}
-
-// Desplazamiento automático cada 3 segundos
-setInterval(() => {
-  moveCarousel(1);
-}, 3000);
