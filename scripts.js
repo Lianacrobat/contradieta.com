@@ -3,12 +3,12 @@ const languages = {
   es: {
     sitioWeb: "contradieta",
     nombreCurso: "PÉRDIDA DE PESO ADECUADA Y CÓMODA SIN FRACASOS NI RECAÍDAS",
-    finPromo: "Fin de promoción:",
+    finPromo: "Fin de promoción",
     precioAhora: "580 UAH",
     precioAntes: "Antes 1,900 UAH",
     comprar: "Comprar promoción",
 
-    cursoParaTi: "Este curso es para ti si:",
+    cursoParaTi: "Este curso es para ti si...",
     razonA: "Has probado todas las dietas existentes en internet, pero aún no has logrado alcanzar el cuerpo de tus sueños",
     razonB: "Después de cada uno de tus experimentos con la pérdida de peso, el peso vuelve a subir, y",
     razonC: "Estás cansada de torturar a tu cuerpo y sientes que debe ser diferente, pero aún no sabes cómo",
@@ -22,38 +22,38 @@ const languages = {
     sobreMiDescripcion: "Mi nombre es Kateryna, soy nutricionista certificada y health coach. Ayudo a las personas a ser más saludables y les enseño a adoptar un estilo de vida saludable a su propio ritmo, con cuidado por su cuerpo y mente y (como dicen mis clientes) sin violencia. Ayudo a las personas a disfrutar del proceso y a cambiar su enfoque de los números al bienestar. Mi enfoque está en la salud y el confort de mis clientes.",
 
     ProgramaCursoTitulo: "Programa del curso",
-    leccionA: "📒 Lección 1. Creencias que te impiden perder peso.",
+    leccionA: "📂 Lección 1. Creencias que te impiden perder peso.",
     leccionA1: "Analizamos las creencias limitantes que te impiden perder peso y cómo afectan a tu comportamiento.",
     leccionA2: "Formamos creencias que te apoyen y que sirvan de motivación y te impulsen a la acción.",
-    leccionB: "📒 Lección 2. Métodos ineficaces de pérdida de peso",
+    leccionB: "📂 Lección 2. Métodos ineficaces de pérdida de peso",
     leccionB1: "Hablamos sobre los métodos ineficaces de pérdida de peso y los principales errores que cometen las personas al intentar adelgazar.",
-    leccionC: "📒 Lección 3. ¿Cómo perder peso de manera segura para la salud y la belleza?",
+    leccionC: "📂 Lección 3. ¿Cómo perder peso de manera segura para la salud y la belleza?",
     leccionC1: "Hablamos sobre los principios básicos de una pérdida de peso saludable.",
     leccionC2: "El ritmo de pérdida de peso óptimo.",
     leccionC3: "Qué y cuánto comer para adelgazar.",
     leccionC4: "Cómo entender qué déficit hacer.",
     leccionC5: "Instrucción paso a paso para perder peso y cómo trabajar con el efecto plateau.",
-    leccionD: "📒 Lección 4. ¿Qué son los macronutrientes?",
+    leccionD: "📂 Lección 4. ¿Qué son los macronutrientes?",
     leccionD1: "Hablamos sobre las funciones, fuentes y normas de los macronutrientes.",
     leccionD2: "Cómo distribuir y equilibrar los macronutrientes en el plato.",
-    leccionE: "📒 Lección 5. Alimentación sin contar calorías ni macronutrientes.",
+    leccionE: "📂 Lección 5. Alimentación sin contar calorías ni macronutrientes.",
     leccionE1: "Te enseñaré a preparar un plato saludable y equilibrado sin cálculos ni complicaciones.",
-    leccionF: "📒 Lección 6. ¿Cómo prevenir recaídas y hacer que la pérdida de peso sea lo más cómoda posible?",
+    leccionF: "📂 Lección 6. ¿Cómo prevenir recaídas y hacer que la pérdida de peso sea lo más cómoda posible?",
     leccionF1: "Te hablaré sobre las herramientas más eficaces que servirán de prevención para las recaídas.",
     leccionF2: "Te enseñaré a incorporar correctamente tus productos favoritos en una dieta saludable.",
-    leccionG: "📒 Lección 7. ¿Qué hacer para que los resultados se mantengan siempre?",
+    leccionG: "📂 Lección 7. ¿Qué hacer para que los resultados se mantengan siempre?",
     leccionG1: "Hablaremos sobre los factores para un cambio de estilo de vida exitoso y cómodo.",
 
   },
   uk: {
     sitioWeb: "Протидієти",
     nombreCurso: "АДЕКВАТНЕ ТА КОМФОРТНЕ СХУДНЕННЯ БЕЗ ЗРИВІВ ТА ВІДКАТІВ",
-    finPromo: "До закінчення акції:",
+    finPromo: "До закінчення акції",
     precioAhora: "580 грн",
     precioAntes: "замість 1,900 грн",
     comprar: "Купити зі знижкою",
 
-    cursoParaTi: "Цей курс для тебе, якщо",
+    cursoParaTi: "Цей курс для тебе, якщо...",
     razonA: "ти перепробувала всі існуючі дієти в інтернеті, але до тіла мрії так і не прийшла",
     razonB: "після кожного твого експерименту зі схудненням вага повертається назад, а",
     razonC: "ти втомилася катувати свій організм і відчуваєш, що треба по-іншому, але поки не знаєш, як",
@@ -248,4 +248,3 @@ accordionTitles.forEach(title => {
 
 
 //dffferfgrea
-
