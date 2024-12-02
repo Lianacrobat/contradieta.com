@@ -432,9 +432,9 @@ footer .social-icons a:hover {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: 80%;
-  height: 90%; /* Altura ajustada para el carrusel dentro del contenedor */
-  padding: 0 20px; /* Padding alrededor de las imágenes */
+  width: 100%;
+  height: 60%; /* Altura ajustada para el carrusel dentro del contenedor */
+  padding-right: 20px; /* Padding alrededor de las imágenes */
   box-sizing: border-box; /* Para que el padding no afecte el tamaño total */
 }
 
@@ -449,7 +449,6 @@ footer .social-icons a:hover {
 }
 
 
-
 /* Efecto de imán suave */
 .carrusel::-webkit-scrollbar {
   display: none;
@@ -457,5 +456,6 @@ footer .social-icons a:hover {
 
 /* Transiciones suaves al hacer scroll */
 .carrusel img:focus {
-  transform: scale(1.1);
+  transform: scale(1.3);
 }
+
