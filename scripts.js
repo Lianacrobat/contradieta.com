@@ -1,7 +1,7 @@
 // Datos de los textos en diferentes idiomas
 const languages = {
   es: {
-    sitioWeb: "contradieta",
+    sitioWeb: "Contradieta",
     nombreCurso: "PÉRDIDA DE PESO ADECUADA Y CÓMODA SIN FRACASOS NI RECAÍDAS",
     finPromo: "Fin de promoción",
     precioAhora: "580 UAH",
@@ -9,17 +9,20 @@ const languages = {
     comprar: "Comprar promoción",
 
     cursoParaTi: "Este curso es para ti si...",
-    razonA: "Has probado todas las dietas existentes en internet, pero aún no has logrado alcanzar el cuerpo de tus sueños",
-    razonB: "Después de cada uno de tus experimentos con la pérdida de peso, el peso vuelve a subir, y",
-    razonC: "Estás cansada de torturar a tu cuerpo y sientes que debe ser diferente, pero aún no sabes cómo",
-    razonD: "Tienes un montón de mitos en la cabeza sobre nutrición y pérdida de peso, y ya no sabes qué es verdad y qué es mentira",
-    razonE: "Dedicas demasiado tiempo a pensar en la comida y la pérdida de peso, divides los alimentos en buenos y malos, y eliminas tus productos favoritos de la dieta porque no sabes cómo comer tus golosinas y seguir perdiendo peso",
-    razonF: "Piensas que ya nada te ayudará y estás condenada a vivir en un cuerpo que no te gusta",
-    razonG: "No solo quieres perder peso, sino también mantener tu salud y mejorar tu bienestar",
-    razonH: "Quieres que el resultado de la pérdida de peso se mantenga para siempre",
+    meIdentifico: "Si 🥲",
+
+    razonA: "Has probado todas las dietas existentes en internet, pero aún no has logrado alcanzar el cuerpo de tus sueños?",
+    razonB: "Después de cada uno de tus experimentos con la pérdida de peso, el peso vuelve a subir?",
+    razonC: "Estás cansada de torturar a tu cuerpo y sientes que debe ser diferente, pero aún no sabes cómo?",
+    razonD: "Tienes un montón de mitos en la cabeza sobre nutrición y pérdida de peso, y ya no sabes qué es verdad y qué es mentira?",
+    razonE: "Dedicas demasiado tiempo a pensar en la comida y la pérdida de peso, divides los alimentos en buenos y malos, y eliminas tus productos favoritos de la dieta porque no sabes cómo comer tus golosinas y seguir perdiendo peso?",
+    razonF: "Piensas que ya nada te ayudará y estás condenada a vivir en un cuerpo que no te gusta?",
+    razonG: "No solo quieres perder peso, sino también mantener tu salud y mejorar tu bienestar?",
+    razonH: "Quieres que el resultado de la pérdida de peso se mantenga para siempre?",
 
     sobreMi: "¿Quién soy yo?",
     sobreMiDescripcion: "Mi nombre es Kateryna, soy nutricionista certificada y health coach. Ayudo a las personas a ser más saludables y les enseño a adoptar un estilo de vida saludable a su propio ritmo, con cuidado por su cuerpo y mente y (como dicen mis clientes) sin violencia. Ayudo a las personas a disfrutar del proceso y a cambiar su enfoque de los números al bienestar. Mi enfoque está en la salud y el confort de mis clientes.",
+    certificados: "Mis Certificados:",
 
     ProgramaCursoTitulo: "Programa del curso",
     leccionA: "📂 Lección 1. Creencias que te impiden perder peso.",
@@ -44,6 +47,8 @@ const languages = {
     leccionG: "📂 Lección 7. ¿Qué hacer para que los resultados se mantengan siempre?",
     leccionG1: "Hablaremos sobre los factores para un cambio de estilo de vida exitoso y cómodo.",
 
+    testimonios: "Opiniones de mis clientes:"
+
   },
   uk: {
     sitioWeb: "Протидієти",
@@ -54,6 +59,7 @@ const languages = {
     comprar: "Купити зі знижкою",
 
     cursoParaTi: "Цей курс для тебе, якщо...",
+    meIdentifico: "Це я 🥲",
     razonA: "ти перепробувала всі існуючі дієти в інтернеті, але до тіла мрії так і не прийшла",
     razonB: "після кожного твого експерименту зі схудненням вага повертається назад, а",
     razonC: "ти втомилася катувати свій організм і відчуваєш, що треба по-іншому, але поки не знаєш, як",
@@ -65,8 +71,9 @@ const languages = {
 
     sobreMi: "Хто я?",
     sobreMiDescripcion: "Мене звати Катерина, я дипломований нутриціолог та хелс-коуч. Роблю людей здоровішими та допомагаю їм прийти до здорового способу життя в максимально комфортному для них темпі, з турботою про своє тіло та розум та (як люблять говорити мої клієнти) без насилля. Допомагаю людям знаходити задоволення у процесі та змістити фокус уваги із цифр на самопочуття. Мій фокус - здоровʼя та комфорт моїх клієнтів.",
+    certificados: "Мої сертифікати:",
 
-    ProgramaCursoTitulo: "Програма курсу",
+    ProgramaCursoTitulo: "🎬 Програма курсу",
     leccionA: "📂 Урок 1. Переконання, які заважають вам схуднути.",
     leccionA1: "розбираємо обмежуючі переконання, які заважають вам схуднути та те, як вони впливають на вашу поведінку",
     leccionA2: "формуємо підтримуючі переконання, які слугуватимуть мотивацією та спонукатимуть до дій",
@@ -89,87 +96,32 @@ const languages = {
     leccionG: "📒 Урок 7. Що робити, щоб результат тримався завжди?",
     leccionG1: "поговоримо про фактори успішної та комфортної зміни способу життя",
 
-    leC: "поговоримо про фактори успішної та комфортної зміни способу життя",
-
-
-    testimonials: [
-      { name: "Карлос", text: "Ця програма змінила моє життя!" },
-      { name: "Хуан", text: "Я скинув 15 кг з цим курсом!" }
-    ],
-    footerEmail: "contact@nutrition.com",
-    footerPhone: "+34 600 123 456",
-    fbLink: "https://facebook.com",
-    instaLink: "https://instagram.com",
+    testimonios: "Відгуки моїх клієнтів:"
   }
 };
 
-// Función para obtener los datos del idioma seleccionado
-function getLangData() {
-  const lang = document.getElementById('language-select').value;
-  return languages[lang];
-}
+// ⚙️ Función para obtener datos según idioma
+const getLangData = () => languages[document.getElementById("language-select").value] || languages.es;
 
-// Función para cambiar el idioma
-function changeLanguage() {
-  const langData = getLangData(); // Obtener los datos del idioma seleccionado
-  // Actualizar textos dinámicamente
-  document.getElementById('sitioWeb').textContent = langData.sitioWeb;
-  document.getElementById('nombreCurso').textContent = langData.nombreCurso;
-  document.getElementById('precioAhora').textContent = langData.precioAhora;
-  document.getElementById('precioAntes').textContent = langData.precioAntes;
-  document.getElementById('comprar').textContent = langData.comprar;
-  document.getElementById('sobreMi').textContent = langData.sobreMi;
-  document.getElementById('razonA').textContent = langData.razonA;
-  document.getElementById('razonB').textContent = langData.razonB;
-  document.getElementById('razonC').textContent = langData.razonC;
-  document.getElementById('razonD').textContent = langData.razonD;
-  document.getElementById('razonE').textContent = langData.razonE;
-  document.getElementById('razonF').textContent = langData.razonF;
-  document.getElementById('razonG').textContent = langData.razonG;
-  document.getElementById('razonH').textContent = langData.razonH;
-  document.getElementById('sobreMiDescripcion').textContent = langData.sobreMiDescripcion;
-  document.getElementById('cursoParaTi').textContent = langData.cursoParaTi;
-  //programa curso
-  document.getElementById('ProgramaCursoTitulo').textContent = langData.ProgramaCursoTitulo;
-  document.getElementById('leccionA').textContent = langData.leccionA;
-  document.getElementById('leccionA1').textContent = langData.leccionA1;
-  document.getElementById('leccionA2').textContent = langData.leccionA2;
-  document.getElementById('leccionB').textContent = langData.leccionB;
-  document.getElementById('leccionB1').textContent = langData.leccionB1;
-  document.getElementById('leccionC').textContent = langData.leccionC;
-  document.getElementById('leccionC1').textContent = langData.leccionC1;
-  document.getElementById('leccionC2').textContent = langData.leccionC2;
-  document.getElementById('leccionC3').textContent = langData.leccionC3;
-  document.getElementById('leccionC4').textContent = langData.leccionC4;
-  document.getElementById('leccionC5').textContent = langData.leccionC5;
-  document.getElementById('leccionD').textContent = langData.leccionD;
-  document.getElementById('leccionD1').textContent = langData.leccionD1;
-  document.getElementById('leccionD2').textContent = langData.leccionD2;
-  document.getElementById('leccionE').textContent = langData.leccionE;
-  document.getElementById('leccionE1').textContent = langData.leccionE1;
-  document.getElementById('leccionF').textContent = langData.leccionF;
-  document.getElementById('leccionF1').textContent = langData.leccionF1;
-  document.getElementById('leccionF2').textContent = langData.leccionF2;
-  document.getElementById('leccionG').textContent = langData.leccionG;
-  document.getElementById('leccionG1').textContent = langData.leccionG1;
+// 🔄 Cambiar idioma dinámicamente
+const changeLanguage = () => {
+  const selectedLanguage = document.getElementById("language-select").value;
+  const langData = languages[selectedLanguage] || languages.es;
 
-
-
-
-
-  // Limpiar testimonios previos
-  const testimonialsDiv = document.getElementById('testimonial-content');
-  testimonialsDiv.innerHTML = '';
-  langData.testimonials.forEach(testimonial => {
-    const div = document.createElement('div');
-    div.classList.add('testimonial-item');
-    div.innerHTML = `<h3>${testimonial.name}</h3><p>"${testimonial.text}"</p>`;
-    testimonialsDiv.appendChild(div);
+  // Actualiza texto de elementos con `data-lang-key`
+  document.querySelectorAll("[data-lang-key]").forEach(element => {
+    const key = element.getAttribute("data-lang-key");
+    if (langData[key]) {
+      element.textContent = langData[key];
+    }
   });
-  // Actualizar footer
+};
 
-  document.documentElement.lang = lang;
-}
+// Ejecuta al cargar la página para establecer el idioma predeterminado
+document.addEventListener("DOMContentLoaded", () => {
+  changeLanguage();
+});
+
 
 // Función para el cambio de tema
 function toggleTheme() {
@@ -219,7 +171,7 @@ function updateCountdown() {
   // Si la cuenta regresiva ha terminado
   if (distance < 0) {
     clearInterval(countdownInterval);
-    document.getElementById("timer").innerHTML = "¡Fin de la cuenta regresiva!";
+    document.getElementById("timer").innerHTML = "";
   }
 }
 
@@ -228,6 +180,27 @@ const countdownInterval = setInterval(updateCountdown, 1000);
 
 // Inicializar la cuenta regresiva
 updateCountdown();
+
+//⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+document.querySelectorAll('.card-checkbox').forEach(checkbox => {
+  checkbox.addEventListener('change', function () {
+    // Encuentra el contenedor más cercano (.card) y su imagen
+    const card = this.closest('.card');
+    const img = card.querySelector('.card-img');
+
+    // Aplica o elimina el efecto en la imagen según el estado del checkbox
+    if (this.checked) {
+      img.style.filter = 'grayscale(100%)';
+      img.style.opacity = '0.5'; // Opcional: ajuste de transparencia
+    } else {
+      img.style.filter = 'none';
+      img.style.opacity = '1';
+    }
+  });
+});
+
+
+
 
 //⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
 // JavaScript para manejar la apertura y cierre del acordeón
@@ -247,45 +220,25 @@ accordionTitles.forEach(title => {
 });
 
 
-//dffferfgrea
 
-document.addEventListener('DOMContentLoaded', () => {
-  const images = Array.from(document.querySelectorAll('img[src^="src/"]'));
-  const totalImages = images.length;
-  let loadedImages = 0;
 
-  // Función para actualizar el spinner
-  function updateLoadingScreen() {
-    const percentage = Math.floor((loadedImages / totalImages) * 100);
-    document.getElementById('loading-percentage').textContent = `Cargando: ${percentage}%`;
 
-    if (loadedImages === totalImages) {
-      // Mostrar el contenido principal y ocultar el spinner
-      document.getElementById('loading-screen').style.display = 'none';
-      document.getElementById('main-content').style.display = 'block';
-      document.getElementById('body').classList.remove('hidden');
-    }
-  }
+//cerfiticados
+// Selección de elementos
+const galleryImages = document.querySelectorAll('.gallery img');
+const fullscreenContainer = document.querySelector('.fullscreen-container');
+const fullscreenImage = document.querySelector('.fullscreen-image');
 
-  // Cargar imágenes y actualizar el spinner
-  images.forEach(img => {
-    const tempImage = new Image();
-    tempImage.src = img.src;
-
-    tempImage.onload = () => {
-      loadedImages++;
-      updateLoadingScreen();
-    };
-
-    tempImage.onerror = () => {
-      console.warn(`No se pudo cargar la imagen: ${img.src}`);
-      loadedImages++;
-      updateLoadingScreen();
-    };
+// Mostrar imagen en pantalla completa
+galleryImages.forEach((image) => {
+  image.addEventListener('click', () => {
+    fullscreenImage.src = image.src;
+    fullscreenContainer.classList.add('visible');
   });
+});
 
-  // Inicializar el spinner en caso de que no haya imágenes
-  if (totalImages === 0) {
-    updateLoadingScreen();
-  }
+// Cerrar pantalla completa al hacer clic en cualquier lugar
+fullscreenContainer.addEventListener('click', () => {
+  fullscreenContainer.classList.remove('visible');
+  fullscreenImage.src = ''; // Limpia la imagen al cerrar
 });
