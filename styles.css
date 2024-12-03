@@ -1,6 +1,16 @@
 /* ⚠️⚠️⚠️ Estilos globales ⚠️⚠️⚠️ */
 * {
-  transition: background-color 0.3s ease, max-height 0.3s ease-out, padding 0.3s ease-out;
+  transition:
+    background-color 0.3s ease,
+    max-height 0.3s ease-out,
+    padding 0.3s ease-out,
+    filter 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s ease,
+    box-shadow 0.3s;
+
+
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -175,7 +185,6 @@ header {
   bottom: 0;
   left: 0;
   z-index: 1;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   object-fit: cover;
 }
 
@@ -218,8 +227,7 @@ header {
 /* Contenedor de las tarjetas */
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* 2 columnas en pantallas grandes */
+  grid-template-columns: repeat(3, 1fr);
   gap: 5px;
   justify-items: center;
 }
@@ -229,7 +237,6 @@ header {
   border-radius: 12px;
   padding: 5px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: left;
 }
 
@@ -243,7 +250,6 @@ header {
   object-fit: cover;
   border-radius: 10px;
   overflow: hidden;
-  transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
 .card h3 {
@@ -268,13 +274,10 @@ header {
 
 
 /* checkbox*/
-/* Contenedor del checkbox y su texto */
 .card-checkbox-container {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: Arial, sans-serif;
-  font-size: 1rem;
+  font-size: .8rem;
   cursor: pointer;
 }
 
@@ -292,18 +295,18 @@ header {
 
 /* Estado no seleccionado */
 .card-checkbox:checked {
-  background-color: #4CAF50;
-  border-color: #4CAF50;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 
 /* Icono de check dentro del checkbox */
 .card-checkbox:checked::before {
-  content: "✔";
+  content: "❌";
   display: block;
-  color: white;
-  font-size: 1rem;
+  margin-left: -13px;
+  font-size: 2rem;
   text-align: center;
-  line-height: 14px;
+  line-height: 12px;
 }
 
 /* Cambiar el color del texto cuando está seleccionado */
@@ -318,18 +321,17 @@ header {
 
 /* Hover en el checkbox */
 .card-checkbox:hover {
-  border-color: #4CAF50;
+  border-color: #d72828;
 }
 
 /* Aplicar escala de grises cuando el checkbox está seleccionado */
-.card-checkbox:checked ~ .card-img {
+.card-checkbox:checked~.card-img {
   filter: grayscale(1);
-  opacity: 0.7; /* Opcional */
+  opacity: 0.7;
+  /* Opcional */
 }
 
 /* certificados*/
-
-/* Estilos generales para la galería */
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -341,7 +343,6 @@ header {
   width: 100%;
   height: auto;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -364,7 +365,6 @@ header {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .fullscreen-container.visible {
@@ -376,84 +376,12 @@ header {
 .fullscreen-container img {
   max-width: 80%;
   max-height: 80%;
-  border-radius: 10px;
 }
 
-.fullscreen-container #image-title {
-  color: white;
-  margin-top: 15px;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-/* Botones de navegación */
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #0d0d0d;
-  transition: background-color 0.3s;
-}
-
-.nav-btn:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-.nav-btn.prev {
-  left: 20px;
-}
-
-.nav-btn.next {
-  right: 20px;
-}
-
-/* Botón de cerrar */
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #0d0d0d;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.close-btn:hover {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-/* Soporte para pantallas pequeñas */
-@media (max-width: 768px) {
-  .nav-btn,
-  .close-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-
-  .fullscreen-container #image-title {
-    font-size: 1rem;
-  }
-}
 
 
 /* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
 /* ⚠️⚠️⚠️ ABOUT ME ⚠️⚠️⚠️ */
-
 .nutri-image-wrapper {
   position: relative;
   background: linear-gradient(-45deg, #fceabb, #b8d8bc, #ffe5c6, #fae3d9);
@@ -517,7 +445,6 @@ header {
   top: 40px;
   object-fit: cover;
   z-index: 2;
-  transition: transform 0.3s ease;
 }
 
 .nutri-imgProfile:hover {
@@ -531,7 +458,6 @@ header {
   text-align: left;
 }
 
-/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
 /* ⚠️⚠️⚠️ PROGRAMA CURSO  ⚠️⚠️⚠️ */
 
 #programaCurso {
@@ -587,7 +513,6 @@ header {
   margin-right: 10px;
   display: inline-block;
   transform: scaleX(2);
-  transition: transform 0.3s ease;
 }
 
 /* La clase show se agrega cuando el acordeón está abierto */
@@ -595,10 +520,8 @@ header {
   max-height: 800px;
 }
 
-/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
-/* ⚠️⚠️⚠️ Estilos básicos del acordeón ⚠️⚠️⚠️ */
 
-/* Estilos del contenedor principal */
+/* ⚠️⚠️⚠️ testimonios ⚠️⚠️⚠️ */
 .carrusel-container {
   height: 450px;
   background-image: url('./src/backgroundPhone.webp');
@@ -612,7 +535,6 @@ header {
 
 .dark-theme .carrusel-container {
   background-image: url('./src/backgroundPhone2.webp');
-
 }
 
 /* Carrusel horizontal */
@@ -623,7 +545,6 @@ header {
   scroll-behavior: smooth;
   width: 100%;
   height: 90%;
-  gap: 10px;
   box-sizing: border-box;
 }
 
@@ -632,10 +553,8 @@ header {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* Asegura que las imágenes se adapten sin ser recortadas */
   scroll-snap-align: center;
   flex-shrink: 0;
-  transition: transform 0.3s ease-in-out;
 }
 
 
