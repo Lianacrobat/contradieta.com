@@ -1,9 +1,12 @@
-/* Estilos globales */
+/* ⚠️⚠️⚠️ Estilos globales ⚠️⚠️⚠️ */
 * {
   transition: background-color 0.3s ease, max-height 0.3s ease-out, padding 0.3s ease-out;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+
+
+/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
 body {
   display: flex;
   flex-direction: column;
@@ -15,6 +18,11 @@ body {
   min-height: 100vh;
   text-align: center;
 }
+
+body.hidden {
+  overflow: hidden;
+}
+
 
 .dark-theme {
   background-color: #0d0d0d;
@@ -69,7 +77,8 @@ header {
   padding: 80px 0 120px;
 }
 
-/* ⚠️⚠️⚠️ Nutrition head coach ⚠️⚠️⚠️ */
+/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
+/* ⚠️⚠️⚠️ PORTADA CURSO ⚠️⚠️⚠️ */
 .image-wrapper {
   position: relative;
   background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
@@ -93,9 +102,6 @@ header {
     background-position: 100% 50%;
   }
 }
-
-/* Tema oscuro */
-
 
 /* Estilos generales de texto dentro de la imagen */
 .background-text,
@@ -144,19 +150,15 @@ header {
   border-radius: 25px;
 }
 
-
 /* Precios */
 #precioAhora {
   color: #297a2c;
   font-weight: bold;
-
 }
 
 #descuento {
   color: #e32311;
   font-weight: bold;
-
-
 }
 
 #precioAntes {
@@ -200,41 +202,339 @@ header {
   border-radius: 25px;
 }
 
+/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
 
-/* ⚠️⚠️⚠️ Footer ⚠️⚠️⚠️ */
-footer {
-  background-color: #ffffff;
+/* ⚠️⚠️⚠️ 2 PARA QUIEN ES EL CURSO ⚠️⚠️⚠️ */
+.course-section {
   text-align: center;
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  padding: 20px;
+}
+
+.course-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Contenedor de las tarjetas */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* 2 columnas en pantallas grandes */
+  gap: 5px;
+  justify-items: center;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 5px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.dark-theme .card {
+  background-color: #212121;
+}
+
+.card-img {
   width: 100%;
-  z-index: 1000;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.card h3 {
+  font-size: .8rem;
+  margin: 5px 0;
+  font-weight: 500;
+}
+
+.card p {
+  font-size: .7rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.dark-theme .card p {
+  color: #8f8f8f;
+}
+
+.solution {
+  color: green;
+}
+
+
+/* checkbox*/
+/* Contenedor del checkbox y su texto */
+.card-checkbox-container {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Estilo base del checkbox */
+.card-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+
+}
+
+/* Estado no seleccionado */
+.card-checkbox:checked {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+/* Icono de check dentro del checkbox */
+.card-checkbox:checked::before {
+  content: "✔";
+  display: block;
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 14px;
+}
+
+/* Cambiar el color del texto cuando está seleccionado */
+.card-checkbox span {
+  font-size: .8rem;
+}
+
+.card-checkbox:checked+span {
+  color: #af4c4c;
+  font-weight: bold;
+}
+
+/* Hover en el checkbox */
+.card-checkbox:hover {
+  border-color: #4CAF50;
+}
+
+/* Aplicar escala de grises cuando el checkbox está seleccionado */
+.card-checkbox:checked ~ .card-img {
+  filter: grayscale(1);
+  opacity: 0.7; /* Opcional */
+}
+
+/* certificados*/
+
+/* Estilos generales para la galería */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor de pantalla completa */
+.fullscreen-container {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
   justify-content: center;
   align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-footer .social-icons {
+.fullscreen-container.visible {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  opacity: 1;
+  visibility: visible;
 }
 
-footer .social-icons a {
-  padding: 15px;
-  color: #236C5B;
-  text-decoration: none;
+.fullscreen-container img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
 }
 
-footer .social-icons a:hover {
-  text-decoration: underline;
+.fullscreen-container #image-title {
+  color: white;
+  margin-top: 15px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* Botones de navegación */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #0d0d0d;
+  transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-btn.prev {
+  left: 20px;
+}
+
+.nav-btn.next {
+  right: 20px;
+}
+
+/* Botón de cerrar */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0d0d0d;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Soporte para pantallas pequeñas */
+@media (max-width: 768px) {
+  .nav-btn,
+  .close-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .fullscreen-container #image-title {
+    font-size: 1rem;
+  }
 }
 
 
-/* ⚠️⚠️⚠️ Estilos básicos del acordeón ⚠️⚠️⚠️ */
+/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
+/* ⚠️⚠️⚠️ ABOUT ME ⚠️⚠️⚠️ */
 
-#programaCurso{
+.nutri-image-wrapper {
+  position: relative;
+  background: linear-gradient(-45deg, #fceabb, #b8d8bc, #ffe5c6, #fae3d9);
+  background-size: 300% 300%;
+  animation: nutri-gradientBackground 15s infinite;
+  overflow: hidden;
+  width: 100%;
+  height: 600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Fondo animado */
+@keyframes nutri-gradientBackground {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Nombre de la nutricionista */
+.nutri-background-text {
+  position: relative;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0d0d0d;
+  text-align: center;
+  z-index: 3;
+  text-transform: uppercase;
+  height: 700px;
+}
+
+/* Botones de redes sociales */
+.nutri-social-buttons {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 50px;
+  top: 0%;
+  display: flex;
+}
+
+.nutri-social-button img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Imagen de perfil */
+.nutri-imgProfile {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 40px;
+  object-fit: cover;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.nutri-imgProfile:hover {
+  transform: scale(1.02);
+}
+
+/* Descripción debajo de la imagen */
+.nutri-description {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left;
+}
+
+/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
+/* ⚠️⚠️⚠️ PROGRAMA CURSO  ⚠️⚠️⚠️ */
+
+#programaCurso {
   padding: 20px;
   text-align: left;
 }
@@ -247,7 +547,7 @@ footer .social-icons a:hover {
   background-color: #3f6954;
   color: #f9f9f9;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .accordion-title:hover {
@@ -259,7 +559,6 @@ footer .social-icons a:hover {
   display: block;
   max-height: 0;
   overflow: hidden;
-  padding: 0 20px;
   list-style-type: none;
   background-color: #ffffff;
   border-left: 2px solid #ffffff;
@@ -286,330 +585,22 @@ footer .social-icons a:hover {
 .accordion-content li::before {
   content: "→";
   margin-right: 10px;
-  /* Menor margen entre la flecha y el texto */
   display: inline-block;
   transform: scaleX(2);
-  /* Ajustado a un valor más moderado */
   transition: transform 0.3s ease;
 }
 
 /* La clase show se agrega cuando el acordeón está abierto */
 .accordion-content.show {
-  max-height: 500px;
-  /* Asegúrate de que la altura máxima sea suficiente para tu contenido */
-  padding: 10px 20px;
+  max-height: 800px;
 }
 
-/* Accesibilidad adicional */
-.accordion-title[aria-expanded="true"] {
-  background-color: #264636;
-  /* Cambia el color del fondo cuando está abierto */
-}
-
-
-
-
-
-
-
-
-
-
-/* ⚠️⚠️⚠️ Estilo general para presentación de nutricionista ⚠️⚠️⚠️ */
-
-
-
-
-
-
-
-
-
-/* Contenedor principal */
-.nutri-image-wrapper {
-  position: relative;
-  background: linear-gradient(-45deg, #fceabb, #b8d8bc, #ffe5c6, #fae3d9);
-  background-size: 300% 300%;
-  animation: nutri-gradientBackground 6s infinite;
-  overflow: hidden;
-  width: 100%;
-  height: 600px;
-  /* Más alto para acomodar la imagen grande */
-  max-width: 540px;
-  margin: 0 auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-/* Fondo animado */
-@keyframes nutri-gradientBackground {
-
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Nombre de la nutricionista */
-.nutri-background-text {
-  position: relative;
-  top: 20px;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #212121;
-  text-align: center;
-  z-index: 3;
-  text-transform: uppercase;
-  height: 700px;
-}
-
-/* Botones de redes sociales */
-.nutri-social-buttons {
-  background-color: #ffffff;
-  padding: 15px;
-  position: relative;
-  border-radius: 50px;
-  top: 0%;
-  display: flex;
-  z-index: 3;
-}
-
-.nutri-social-button img {
-  width: 50px;
-  height: 50px;
-}
-
-
-/* Carrusel de diplomas */
-.nutri-carousel {
-  position: absolute;
-  top: 100px;
-  left: 0;
-  right: 0;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  z-index: 1;
-  /* Debajo de la imagen de la nutricionista */
-  animation: nutri-diplomasEffect 30s infinite linear;
-}
-
-/* Imagen de perfil */
-.nutri-imgProfile {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  top: 40px;
-  /* Centrada en el contenedor */
-  object-fit: cover;
-  z-index: 2;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.nutri-imgProfile:hover {
-  transform: scale(1.02);
-}
-
-/* Descripción debajo de la imagen */
-.nutri-description {
-  margin: 20px auto;
-  text-align: center;
-  max-width: 540px;
-  font-size: 1rem;
-  line-height: 1.6;
-  font-family: 'Roboto', sans-serif;
-}
-
-
-
-/* Carrusel de diplomas minimalista */
-.nutri-carousel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 20px 0;
-  margin: 20px auto;
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 540px;
-}
-
-.nutri-carousel-container {
-  display: flex;
-  gap: 10px;
-}
-
-.nutri-diploma-image {
-  width: 120px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.nutri-diploma-image:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ⚠️⚠️⚠️ Estilo general para la sección ⚠️⚠️⚠️ */
-.course-section {
-  text-align: center;
-  padding: 20px;
-}
-
-.course-section h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-/* Contenedor de las tarjetas */
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* 2 columnas en pantallas grandes */
-  gap: 5px;
-  justify-items: center;
-}
-
-.card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 5px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: left;
-}
-
-.dark-theme .card {
-  background-color: #212121;
-
-}
-
-.card-img {
-  width: 100%;
-  height: 120px;
-  /* Altura fija para que la imagen sea cuadrada */
-  object-fit: cover;
-  /* La imagen cubrirá completamente el área sin deformarse */
-  border-radius: 10px;
-  overflow: hidden;
-  /* Asegura que no se vean las partes fuera del contenedor */
-  filter: grayscale(0);
-}
-
-
-.card h3 {
-  font-size: .8rem;
-  margin: 5px 0;
-  font-weight: 500;
-}
-
-.card p {
-  font-size: .7rem;
-  color: #555;
-  margin-bottom: 5px;
-}
-
-.dark-theme .card p {
-  color: #8f8f8f;
-
-}
-
-
-.solution {
-  color: green;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
+/* ⚠️⚠️⚠️ Estilos básicos del acordeón ⚠️⚠️⚠️ */
 
 /* Estilos del contenedor principal */
 .carrusel-container {
   height: 450px;
-  /* Altura fija del contenedor */
   background-image: url('./src/backgroundPhone.webp');
   background-size: cover;
   display: flex;
@@ -618,6 +609,11 @@ footer .social-icons a:hover {
   overflow: hidden;
   position: relative;
   border-radius: 10px;
+}
+
+.dark-theme .carrusel-container {
+  background-image: url('./src/backgroundPhone2.webp');
+
 }
 
 /* Carrusel horizontal */
@@ -654,46 +650,37 @@ footer .social-icons a:hover {
   transform: scale(1.3);
 }
 
-/* Spinner y estilos */
-#loading-screen {
+/* ⚠️⚠️⚠️ Footer ⚠️⚠️⚠️ */
+
+footer {
+  background-color: #ffffff;
+  text-align: center;
   position: fixed;
-  top: 0;
   left: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  z-index: 9999;
 }
 
-#loading-spinner {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
+footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+footer .social-icons a {
+  padding: 15px;
+  color: #236C5B;
+  text-decoration: none;
 }
 
-#loading-percentage {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #333;
+footer .social-icons a:hover {
+  text-decoration: underline;
 }
 
-body.hidden {
-  overflow: hidden;
-}
+
+/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
+/* ⚠️⚠️⚠️ Estilos básicos del acordeón ⚠️⚠️⚠️ */
