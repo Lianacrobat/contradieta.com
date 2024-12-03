@@ -8,18 +8,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body id="body" class="hidden">
-  <div id="loading-screen">
-    <div id="loading-spinner"></div>
-    <div id="loading-percentage">Cargando: 0%</div>
-  </div>
+<body id="body">
   <!-- Contenedor principal -->
-  <div class="container" id="main-content" style="display: none;">
+  <div class="container" id="main-content">
 
     <!-- Header -->
     <header>
       <div class="header-left">
-        <h2 id="sitioWeb"></h2>
+        <h2 id="sitioWeb" data-lang-key="sitioWeb"></h2>
       </div>
       <div class="header-right">
         <select id="language-select" onchange="changeLanguage()">
@@ -32,152 +28,184 @@
     </header>
 
     <main class="mainContainer">
-      <!-- 5. PARA QUIEN ES EL CURSO -->
 
+
+      <!-- PORTADA CURSO -->
       <div class="image-wrapper">
-        <p id="nombreCurso" class="background-text"></p>
+        <p id="nombreCurso" data-lang-key="nombreCurso" class="background-text"></p>
         <p id="timer" class="timer2"></p>
         <div class="price-section">
-          <div id="precioAhora"></div>
+          <div id="precioAhora" data-lang-key="precioAhora"></div>
           <div id="descuento">-70%</div>
-          <div id="precioAntes"></div>
+          <div id="precioAntes" data-lang-key="precioAntes"></div>
         </div>
         <img src="./src/kat01.png" alt="Contradieta" class="imgProfile">
         <a href="https://secure.wayforpay.com/payment/s6605adc9c1d5?fbclid=PAZXh0bgNhZW0CMTEAAaaCNIgsyYqv9rpiLF32nrw8Oa70u92GV4g6ELoPJTdCB4ejdJtT9vohiws_aem_L-V47e_yF_SNR_lXnjKEgw"
-          class="comprar" target="_blank" id="comprar"></a>
+          class="comprar" target="_blank" id="comprar" data-lang-key="comprar"></a>
       </div>
-      <!-- 5. PARA QUIEN ES EL CURSO -->
+
+      <!-- PARA QUIEN ES EL CURSO -->
       <section class="course-section">
-        <h2 id="cursoParaTi"></h2>
+        <h2 id="cursoParaTi" data-lang-key="cursoParaTi"></h2>
         <div class="cards-container">
           <div class="card">
             <img src="./src/gif01.webp" alt="Problema 1" class="card-img">
-            <h3 id="razonA"></h3>
-            <p class="solution">Aprende un enfoque sostenible que funcione para ti a largo plazo.</p>
+            <h3 id="razonA" data-lang-key="razonA"></h3>
+            <label class="card-checkbox-container">
+              <input type="checkbox" class="card-checkbox">
+              <span id="meIdentifico-text" data-lang-key="meIdentifico"></span>
+            </label>
           </div>
           <div class="card">
             <img src="./src/gif02.webp" alt="Gif relacionado al problema 2" class="card-img">
-            <h3 id="razonB"></h3>
-
-            <p class="solution">Te enseñamos a mantener los resultados sin efectos rebote.</p>
+            <h3 id="razonB" data-lang-key="razonB"></h3>
+            <label class="card-checkbox-container">
+              <input type="checkbox" class="card-checkbox">
+              <span id="meIdentifico-text" data-lang-key="meIdentifico"></span>
+            </label>
           </div>
           <div class="card">
             <img src="./src/gif03.webp" alt="Gif relacionado al problema 3" class="card-img">
-            <h3 id="razonC"></h3>
-            <p class="solution">Nuestro enfoque es saludable, sin sufrimiento y efectivo.</p>
+            <h3 id="razonC" data-lang-key="razonC"></h3>
+            <label class="card-checkbox-container">
+              <input type="checkbox" class="card-checkbox">
+              <span id="meIdentifico-text" data-lang-key="meIdentifico"></span>
+            </label>
           </div>
           <div class="card">
             <img src="./src/gif04.webp" alt="Gif relacionado al problema 4" class="card-img">
-            <h3 id="razonD"></h3>
-            <p class="solution">Desmitificamos todo sobre la nutrición y te damos las respuestas correctas.</p>
+            <h3 id="razonD" data-lang-key="razonD"></h3>
+            <label class="card-checkbox-container">
+              <input type="checkbox" class="card-checkbox">
+              <span id="meIdentifico-text" data-lang-key="meIdentifico"></span>
+            </label>
           </div>
           <div class="card">
             <img src="./src/gif05.webp" alt="Gif relacionado al problema 5" class="card-img">
-            <h3 id="razonE"></h3>
-            <p class="solution">Te enseñamos a disfrutar de la comida de manera balanceada y sin culpas.</p>
+            <h3 id="razonE" data-lang-key="razonE"></h3>
+            <label class="card-checkbox-container">
+              <input type="checkbox" class="card-checkbox">
+              <span id="meIdentifico-text" data-lang-key="meIdentifico"></span>
+            </label>
           </div>
           <div class="card">
             <img src="./src/gif06.webp" alt="Gif relacionado al problema 6" class="card-img">
-            <h3 id="razonF"></h3>
+            <h3 id="razonF" data-lang-key="razonF"></h3>
             </p>
-            <p class="solution">Te mostramos que es posible cambiar con un enfoque adecuado y efectivo.</p>
+            <label class="card-checkbox-container">
+              <input type="checkbox" class="card-checkbox">
+              <span id="meIdentifico-text" data-lang-key="meIdentifico"></span>
+            </label>
           </div>
           <div class="card">
             <img src="./src/gif07.webp" alt="Gif relacionado al problema 7" class="card-img">
-            <h3 id="razonG"></h3>
-            <p class="solution">Nuestro curso enseña cómo perder peso sin comprometer tu salud.</p>
+            <h3 id="razonG" data-lang-key="razonG"></h3>
+            <label class="card-checkbox-container">
+              <input type="checkbox" class="card-checkbox">
+              <span id="meIdentifico-text" data-lang-key="meIdentifico"></span>
+            </label>
           </div>
           <div class="card">
             <img src="./src/gif08.webp" class="card-img">
-            <h3 id="razonH"></h3>
-            <p class="solution">Te enseñamos a mantener los resultados a largo plazo de manera efectiva.</p>
+            <h3 id="razonH" data-lang-key="razonH"></h3>
+            <label class="card-checkbox-container">
+              <input type="checkbox" class="card-checkbox">
+              <span id="meIdentifico-text" data-lang-key="meIdentifico"></span>
+            </label>
           </div>
         </div>
       </section>
-      <br>
 
-      <!-- 5. QUIEN SOY -->
-
+      <!-- ABOUT ME -->
       <div class="nutri-image-wrapper">
-        <p id="sobreMi" class="nutri-background-text">Kateryna Ivanova</p>
+        <p id="sobreMi" data-lang-key="sobreMi" class="nutri-background-text"></p>
         <div class="nutri-social-buttons">
-          <a href="https://www.instagram.com" target="_blank" class="nutri-social-button">
+          <a href="https://www.instagram.com/contra.dieta/" target="_blank" class="nutri-social-button">
             <img src="./src/instagram-icon.webp" alt="Instagram" />
           </a>
-          <!-- Puedes agregar más redes sociales si es necesario -->
         </div>
-        <img src="./src/kat04.png" alt="Kateryna Ivanova" class="nutri-imgProfile">
+        <img src="./src/kat04.png" alt="Kateryna" class="nutri-imgProfile">
       </div>
       <div class="nutri-description">
-        <p id="sobreMiDescripcion">
-          Soy Kateryna Ivanova, nutricionista certificada con experiencia en promover hábitos saludables. Ayudo a mis
-          pacientes a alcanzar sus metas alimenticias con un enfoque personalizado y basado en ciencia.
-        </p>
+        <p id="sobreMiDescripcion" data-lang-key="sobreMiDescripcion"></p>
       </div>
 
+      <!-- CERTIFICADOS -->
+      <div class="gallery">
+        <img src="./src/ctf01.webp" alt="Imagen 1">
+        <img src="./src/ctf02.webp" alt="Imagen 2">
+        <img src="./src/ctf03.webp" alt="Imagen 3">
+        <img src="./src/ctf04.webp" alt="Imagen 4">
+        <img src="./src/ctf05.webp" alt="Imagen 5">
+        <img src="./src/ctf06.webp" alt="Imagen 6">
+        <img src="./src/ctf07.webp" alt="Imagen 7">
+        <img src="./src/ctf08.webp" alt="Imagen 8">
+        <img src="./src/ctf09.webp" alt="Imagen 9">
+      </div>
+      
+      <div class="fullscreen-container">
+        <img src="" alt="Imagen ampliada" class="fullscreen-image">
+      </div>
+      
 
 
-      <!-- 7. porgramaCurso -->
-
-
-
+      <!-- PROGRAMA CURSO -->
       <section id="programaCurso">
-        <h2 id="ProgramaCursoTitulo"></h2>
+        <h2 id="ProgramaCursoTitulo" data-lang-key="ProgramaCursoTitulo"></h2>
 
         <div class="accordion">
-          <h3 id="leccionA" class="accordion-title"></h3>
+          <h3 id="leccionA" data-lang-key="leccionA" class="accordion-title"></h3>
           <ul class="accordion-content">
-            <li id="leccionA1"></li>
-            <li id="leccionA2"></li>
+            <li id="leccionA1" data-lang-key="leccionA1"></li>
+            <li id="leccionA2" data-lang-key="leccionA2"></li>
           </ul>
         </div>
         <div class="accordion">
-          <h3 id="leccionB" class="accordion-title"></h3>
+          <h3 id="leccionB" data-lang-key="leccionB" class="accordion-title"></h3>
           <ul class="accordion-content">
-            <li id="leccionB1"></li>
+            <li id="leccionB1" data-lang-key="leccionB1"></li>
           </ul>
         </div>
         <div class="accordion">
-          <h3 id="leccionC" class="accordion-title"></h3>
+          <h3 id="leccionC" data-lang-key="leccionC" class="accordion-title"></h3>
           <ul class="accordion-content">
-            <li id="leccionC1"></li>
-            <li id="leccionC2"></li>
-            <li id="leccionC3"></li>
-            <li id="leccionC4"></li>
-            <li id="leccionC5"></li>
+            <li id="leccionC1" data-lang-key="leccionC1"></li>
+            <li id="leccionC2" data-lang-key="leccionC2"></li>
+            <li id="leccionC3" data-lang-key="leccionC3"></li>
+            <li id="leccionC4" data-lang-key="leccionC4"></li>
+            <li id="leccionC5" data-lang-key="leccionC5"></li>
           </ul>
         </div>
         <div class="accordion">
-          <h3 id="leccionD" class="accordion-title"></h3>
+          <h3 id="leccionD" data-lang-key="leccionD" class="accordion-title"></h3>
           <ul class="accordion-content">
-            <li id="leccionD1"></li>
-            <li id="leccionD2"></li>
+            <li id="leccionD1" data-lang-key="leccionD1"></li>
+            <li id="leccionD2" data-lang-key="leccionD2"></li>
           </ul>
         </div>
         <div class="accordion">
-          <h3 id="leccionE" class="accordion-title"></h3>
+          <h3 id="leccionE" data-lang-key="leccionE" class="accordion-title"></h3>
           <ul class="accordion-content">
-            <li id="leccionE1"></li>
+            <li id="leccionE1" data-lang-key="leccionE1"></li>
           </ul>
         </div>
         <div class="accordion">
-          <h3 id="leccionF" class="accordion-title"></h3>
+          <h3 id="leccionF" data-lang-key="leccionF" class="accordion-title"></h3>
           <ul class="accordion-content">
-            <li id="leccionF1"></li>
-            <li id="leccionF2"></li>
+            <li id="leccionF1" data-lang-key="leccionF1"></li>
+            <li id="leccionF2" data-lang-key="leccionF2"></li>
           </ul>
         </div>
         <div class="accordion">
-          <h3 id="leccionG" class="accordion-title"></h3>
+          <h3 id="leccionG" data-lang-key="leccionG" class="accordion-title"></h3>
           <ul class="accordion-content">
-            <li id="leccionG1"></li>
+            <li id="leccionG1" data-lang-key="leccionG1"></li>
           </ul>
         </div>
-        <!-- 7. TESTIMONIOS -->
 
-        <h2>Lo que dicen mis clientes</h2>
+        <!-- TESTIMONIOS -->
+        <h2 id="testimonios" data-lang-key="testimonios"></h2>
         <div class="carrusel-container">
-
           <div class="carrusel">
             <img src="./src/testimonio001.webp" alt="Testimonio 1" class="imagen">
             <img src="./src/testimonio002.webp" alt="Testimonio 2" class="imagen">
