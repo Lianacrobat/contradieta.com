@@ -1,3 +1,44 @@
+// Función para optimizar la carga de imágenes
+const optimizeImageLoading = () => {
+  const images = document.querySelectorAll("img");
+
+  // Establece el atributo `loading="lazy"` para las imágenes
+  images.forEach((img) => {
+    img.setAttribute("loading", "lazy"); // Lazy loading nativo
+    const dataSrc = img.getAttribute("data-src");
+    if (dataSrc) img.src = dataSrc; // Actualiza el src solo cuando sea necesario
+  });
+
+  // Intersection Observer para cargar imágenes cuando estén en el viewport
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            const src = img.getAttribute("data-src");
+            if (src) {
+              img.src = src;
+              img.removeAttribute("data-src"); // Limpia el atributo para evitar recargas
+            }
+            observer.unobserve(img); // Deja de observar después de cargar
+          }
+        });
+      },
+      { rootMargin: "100px" } // Carga las imágenes un poco antes de entrar en el viewport
+    );
+
+    images.forEach((img) => observer.observe(img));
+  }
+};
+
+// Llama a la función después de que el DOM esté listo
+document.addEventListener("DOMContentLoaded", optimizeImageLoading);
+
+
+
+
+
 // Datos de los textos en diferentes idiomas
 const languages = {
   es: {
@@ -100,145 +141,99 @@ const languages = {
   }
 };
 
-// ⚙️ Función para obtener datos según idioma
-const getLangData = () => languages[document.getElementById("language-select").value] || languages.es;
+// Función para obtener datos de idioma
+const getLangData = () => {
+  const lang = document.getElementById("language-select").value;
+  return languages[lang] || languages.es;
+};
 
-// 🔄 Cambiar idioma dinámicamente
+// Función para actualizar el contenido según el idioma
 const changeLanguage = () => {
-  const selectedLanguage = document.getElementById("language-select").value;
-  const langData = languages[selectedLanguage] || languages.es;
-
-  // Actualiza texto de elementos con `data-lang-key`
-  document.querySelectorAll("[data-lang-key]").forEach(element => {
-    const key = element.getAttribute("data-lang-key");
-    if (langData[key]) {
-      element.textContent = langData[key];
-    }
+  const langData = getLangData();
+  document.querySelectorAll("[data-lang-key]").forEach((el) => {
+    const key = el.dataset.langKey;
+    if (langData[key]) el.textContent = langData[key];
   });
 };
 
-// Ejecuta al cargar la página para establecer el idioma predeterminado
+// Función para el cambio de tema
+const toggleTheme = () => {
+  const body = document.body;
+  body.classList.toggle("dark-theme");
+  document.getElementById("theme-toggle").textContent = body.classList.contains("dark-theme") ? "🌞" : "🌙";
+};
+
+
+// 🛠️ Función para calcular la próxima medianoche
+const getNextMidnight = () => {
+  const now = new Date();
+  now.setHours(24, 0, 0, 0);
+  return now.getTime();
+};
+
+// Función para agregar ceros a la izquierda
+const padZero = (num) => (num < 10 ? `0${num}` : num);
+
+// Función para actualizar cuenta regresiva
+const updateCountdown = () => {
+  const targetDate = getNextMidnight();
+  const now = Date.now();
+  const distance = targetDate - now;
+  const langData = getLangData();
+
+  if (distance < 0) return clearInterval(countdownInterval);
+
+  const hours = padZero(Math.floor((distance / (1000 * 60 * 60)) % 24));
+  const minutes = padZero(Math.floor((distance / (1000 * 60)) % 60));
+  const seconds = padZero(Math.floor((distance / 1000) % 60));
+
+  document.getElementById("timer").textContent = `${langData.finPromo}: ${hours}:${minutes}:${seconds}`;
+};
+
+// 🛠️ Inicialización de eventos y funciones
 document.addEventListener("DOMContentLoaded", () => {
   changeLanguage();
+  updateCountdown();
+
+
 });
 
-
-// Función para el cambio de tema
-function toggleTheme() {
-  const body = document.getElementById('body');
-  body.classList.toggle('dark-theme');
-  const themeButton = document.getElementById('theme-toggle');
-  themeButton.textContent = body.classList.contains('dark-theme') ? '🌞' : '🌙';
-}
-
-// Inicialización
-document.addEventListener('DOMContentLoaded', () => {
-  changeLanguage();  // Cargar idioma predeterminado
-
-  // Escuchar el cambio de idioma
-  document.getElementById('language-select').addEventListener('change', changeLanguage);
-});
-
-// Función para calcular la fecha de la medianoche del día siguiente
-function getNextMidnight() {
-  const now = new Date();
-  now.setHours(24, 0, 0, 0); // Establece la hora a las 00:00:00 del siguiente día
-  return now.getTime(); // Devuelve el tiempo en milisegundos
-}
-
-// Función para agregar ceros a la izquierda para formato 00:00:00
-function padZero(number) {
-  return number < 10 ? "0" + number : number;
-}
-
-//⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
-// Función para actualizar la cuenta regresiva
-function updateCountdown() {
-  const targetDate = getNextMidnight();
-  const now = new Date().getTime();
-  const distance = targetDate - now;
-  const langData = getLangData(); // Obtener los datos del idioma seleccionado
-
-
-  // Calcular horas, minutos y segundos
-  const hours = padZero(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-  const minutes = padZero(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-  const seconds = padZero(Math.floor((distance % (1000 * 60)) / 1000));
-
-  // Mostrar el tiempo restante en el HTML
-  document.getElementById("timer").innerHTML = `${langData.finPromo}: ${hours} : ${minutes} : ${seconds}`;
-
-  // Si la cuenta regresiva ha terminado
-  if (distance < 0) {
-    clearInterval(countdownInterval);
-    document.getElementById("timer").innerHTML = "";
-  }
-}
-
-// Actualizar la cuenta regresiva cada segundo
 const countdownInterval = setInterval(updateCountdown, 1000);
 
-// Inicializar la cuenta regresiva
-updateCountdown();
+// 🛠️ Checkbox para tarjetas
+document.querySelectorAll(".card-checkbox").forEach((checkbox) => {
+  checkbox.addEventListener("change", function () {
+    const card = this.closest(".card");
+    const img = card.querySelector(".card-img");
+    img.style.filter = this.checked ? "grayscale(100%)" : "none";
+    img.style.opacity = this.checked ? "0.5" : "1";
+  });
+});
 
-//⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
-document.querySelectorAll('.card-checkbox').forEach(checkbox => {
-  checkbox.addEventListener('change', function () {
-    // Encuentra el contenedor más cercano (.card) y su imagen
-    const card = this.closest('.card');
-    const img = card.querySelector('.card-img');
-
-    // Aplica o elimina el efecto en la imagen según el estado del checkbox
-    if (this.checked) {
-      img.style.filter = 'grayscale(100%)';
-      img.style.opacity = '0.5'; // Opcional: ajuste de transparencia
-    } else {
-      img.style.filter = 'none';
-      img.style.opacity = '1';
-    }
+// 🛠️ Gestión del acordeón
+document.querySelectorAll(".accordion-title").forEach((title) => {
+  title.addEventListener("click", () => {
+    const content = title.nextElementSibling;
+    content.classList.toggle("show");
+    title.setAttribute("aria-expanded", content.classList.contains("show"));
   });
 });
 
 
+// 🛠️ Galería de imágenes
+const galleryHandler = (() => {
+  const fullscreenContainer = document.querySelector(".fullscreen-container");
+  const fullscreenImage = fullscreenContainer.querySelector(".fullscreen-image");
 
-
-//⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
-// JavaScript para manejar la apertura y cierre del acordeón
-const accordionTitles = document.querySelectorAll('.accordion-title');
-
-accordionTitles.forEach(title => {
-  title.addEventListener('click', () => {
-    const content = title.nextElementSibling; // El siguiente elemento en el DOM, que es el contenido del acordeón
-
-    // Cambiar la clase 'show' para mostrar u ocultar el contenido
-    content.classList.toggle('show');
-
-    // Actualizar el estado de aria-expanded para accesibilidad
-    const isExpanded = content.classList.contains('show');
-    title.setAttribute('aria-expanded', isExpanded);
+  document.querySelectorAll(".gallery img").forEach((img) => {
+    img.addEventListener("click", () => {
+      fullscreenImage.src = img.src;
+      fullscreenContainer.classList.add("visible");
+    });
   });
-});
 
-
-
-
-
-//cerfiticados
-// Selección de elementos
-const galleryImages = document.querySelectorAll('.gallery img');
-const fullscreenContainer = document.querySelector('.fullscreen-container');
-const fullscreenImage = document.querySelector('.fullscreen-image');
-
-// Mostrar imagen en pantalla completa
-galleryImages.forEach((image) => {
-  image.addEventListener('click', () => {
-    fullscreenImage.src = image.src;
-    fullscreenContainer.classList.add('visible');
+  fullscreenContainer.addEventListener("click", () => {
+    fullscreenContainer.classList.remove("visible");
+    fullscreenImage.src = "";
   });
-});
-
-// Cerrar pantalla completa al hacer clic en cualquier lugar
-fullscreenContainer.addEventListener('click', () => {
-  fullscreenContainer.classList.remove('visible');
-  fullscreenImage.src = ''; // Limpia la imagen al cerrar
-});
+})();
