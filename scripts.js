@@ -188,7 +188,7 @@ const updateCountdown = () => {
   const seconds = padZero(Math.floor((distance / 1000) % 60));
 
   document.getElementById("timer").textContent = `${langData.finPromo}: ${hours}:${minutes}:${seconds}`;
-  document.getElementById("timer2").textContent = `${langData.finPromo}: ${hours}:${minutes}:${seconds}`;
+  document.getElementById("timer2").textContent = `${langData.finPromo}: ${hours}:${minutes}:${seconds} ⏱️`;
 };
 
 // 🛠️ Inicialización de eventos y funciones
@@ -242,28 +242,47 @@ if (firstAccordion) {
 
 // 🛠️ Galería de certificados
 document.addEventListener("DOMContentLoaded", () => {
-  const carrusel = document.getElementById("carrusel");
-  const images = Array.from(carrusel.children);
+  const initializeCarousel = (carouselId) => {
+    const carousel = document.getElementById(carouselId);
+    const images = Array.from(carousel.children);
 
-  // Clonar las imágenes al inicio y al final
-  const firstClone = images[0].cloneNode(true);
-  const lastClone = images[images.length - 1].cloneNode(true);
+    // Clonar las imágenes al inicio y al final
+    const firstClone = images[0].cloneNode(true);
+    const lastClone = images[images.length - 1].cloneNode(true);
 
-  carrusel.insertBefore(lastClone, images[0]); // Insertar el clon al inicio
-  carrusel.appendChild(firstClone); // Insertar el clon al final
+    carousel.insertBefore(lastClone, images[0]); // Insertar el clon al inicio
+    carousel.appendChild(firstClone); // Insertar el clon al final
 
-  // Ajustar el scroll inicial al primer elemento real
-  const imageWidth = carrusel.children[0].offsetWidth;
-  carrusel.scrollLeft = imageWidth;
+    // Asegurarse de que las imágenes estén cargadas antes de calcular ancho
+    const onImagesLoaded = () => {
+      const imageWidth = carousel.children[0].offsetWidth;
+      carousel.scrollLeft = imageWidth;
 
-  carrusel.addEventListener("scroll", () => {
-    // Volver al inicio si llegas al final
-    if (carrusel.scrollLeft >= (imageWidth * (images.length + 1))) {
-      carrusel.scrollLeft = imageWidth;
-    }
-    // Volver al final si estás al principio
-    if (carrusel.scrollLeft <= 0) {
-      carrusel.scrollLeft = imageWidth * images.length;
-    }
-  });
+      carousel.addEventListener("scroll", () => {
+        // Verificar posiciones para scroll infinito
+        if (carousel.scrollLeft >= imageWidth * (images.length + 1)) {
+          carousel.scrollLeft = imageWidth;
+        }
+        if (carousel.scrollLeft <= 0) {
+          carousel.scrollLeft = imageWidth * images.length;
+        }
+      });
+    };
+
+    // Esperar a que todas las imágenes se carguen
+    const promises = images.map((img) => new Promise((resolve) => {
+      if (img.complete) {
+        resolve();
+      } else {
+        img.onload = resolve;
+        img.onerror = resolve;
+      }
+    }));
+
+    Promise.all(promises).then(onImagesLoaded);
+  };
+
+  // Inicializar carruseles
+  initializeCarousel("carruselCertificados");
+  initializeCarousel("carruselTestimonios");
 });
