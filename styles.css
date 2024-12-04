@@ -362,13 +362,32 @@ header {
 }
 
 /* Botones de redes sociales */
+/* Botones de redes sociales */
 .nutri-social-buttons {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 50px;
   top: 0%;
   display: flex;
+  animation: heartbeat 1.5s infinite ease-in-out; /* Animación de latido */
 }
+
+/* Definir la animación de latido */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1); /* Tamaño normal */
+  }
+  30% {
+    transform: scale(1.2); /* Escalado más grande */
+  }
+  60% {
+    transform: scale(1); /* Regreso al tamaño normal */
+  }
+  100% {
+    transform: scale(1); /* Tamaño normal */
+  }
+}
+
 
 .nutri-social-button img {
   width: 50px;
@@ -461,9 +480,9 @@ header {
 
 
 /* ⚠️⚠️⚠️ testimonios y certificados⚠️⚠️⚠️ */
-.carrusel-container {
+.certificadosContainer {
   height: 450px;
-  background-image: url('./src/backgroundPhone.webp');
+  background-image: url('./src/backgroundPhone3.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -476,15 +495,14 @@ header {
   position: relative;
 }
 
-.dark-theme .carrusel-container {
-  background-image: url('./src/backgroundPhone2.webp');
+.dark-theme .certificadosContainer {
+  background-image: url('./src/backgroundPhone4.webp');
   background-attachment: fixed;
   /* También aplicamos fondo estático aquí */
 }
 
-
 /* Carrusel horizontal */
-.carrusel {
+.certificados {
   display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
@@ -496,7 +514,48 @@ header {
   padding: 20px;
 }
 
-/* Estilos de las imágenes */
+/* Efecto de imán suave */
+.certificados::-webkit-scrollbar {
+  display: none;
+}
+
+/* Transiciones suaves al hacer scroll */
+.certificados img:focus {
+  transform: scale(1.3);
+}
+
+.testimoniosContainer {
+  height: 450px;
+  background-image: url('./src/backgroundPhone.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.dark-theme .testimoniosContainer {
+  background-image: url('./src/backgroundPhone2.webp');
+  background-attachment: fixed;
+}
+
+/* Carrusel horizontal */
+.testimonios {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  gap: 10px;
+  padding: 20px;
+}
+
 .imagen {
   width: 100%;
   height: 100%;
@@ -505,16 +564,11 @@ header {
   flex-shrink: 0;
 }
 
-
-/* Efecto de imán suave */
-.carrusel::-webkit-scrollbar {
+/* Ocultar barra de scroll */
+.testimonios::-webkit-scrollbar {
   display: none;
 }
 
-/* Transiciones suaves al hacer scroll */
-.carrusel img:focus {
-  transform: scale(1.3);
-}
 
 /* ⚠️⚠️⚠️ resultados ⚠️⚠️⚠️ */
 
