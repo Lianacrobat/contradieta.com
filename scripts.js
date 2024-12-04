@@ -241,24 +241,6 @@ if (firstAccordion) {
 
 
 // 🛠️ Galería de certificados
-const galleryHandler = (() => {
-  const fullscreenContainer = document.querySelector(".fullscreen-container");
-  const fullscreenImage = fullscreenContainer.querySelector(".fullscreen-image");
-  
-  document.querySelectorAll(".gallery img").forEach((img) => {
-    img.addEventListener("click", () => {
-      fullscreenImage.src = img.src;
-      fullscreenContainer.classList.add("visible");
-    });
-  });
-  
-  fullscreenContainer.addEventListener("click", () => {
-    fullscreenContainer.classList.remove("visible");
-    fullscreenImage.src = "";
-  });
-})();
-
-// 🛠️ Galería de certificados
 document.addEventListener("DOMContentLoaded", () => {
   const carrusel = document.getElementById("carrusel");
   const images = Array.from(carrusel.children);
