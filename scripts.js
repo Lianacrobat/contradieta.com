@@ -188,6 +188,7 @@ const updateCountdown = () => {
   const seconds = padZero(Math.floor((distance / 1000) % 60));
 
   document.getElementById("timer").textContent = `${langData.finPromo}: ${hours}:${minutes}:${seconds}`;
+  document.getElementById("timer2").textContent = `${langData.finPromo}: ${hours}:${minutes}:${seconds}`;
 };
 
 // 🛠️ Inicialización de eventos y funciones
@@ -210,30 +211,77 @@ document.querySelectorAll(".card-checkbox").forEach((checkbox) => {
   });
 });
 
+
 // 🛠️ Gestión del acordeón
 document.querySelectorAll(".accordion-title").forEach((title) => {
   title.addEventListener("click", () => {
     const content = title.nextElementSibling;
+
+    // Cierra otros acordeones abiertos para comportamiento exclusivo
+    document.querySelectorAll(".accordion-content").forEach((otherContent) => {
+      if (otherContent !== content) {
+        otherContent.classList.remove("show");
+        otherContent.previousElementSibling.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Alternar estado del acordeón actual
     content.classList.toggle("show");
     title.setAttribute("aria-expanded", content.classList.contains("show"));
   });
 });
 
+// Asegurar que Lección A esté activa por defecto
+const firstAccordion = document.querySelector(".accordion-content");
+if (firstAccordion) {
+  firstAccordion.classList.add("show");
+  firstAccordion.previousElementSibling.setAttribute("aria-expanded", "true");
+}
 
-// 🛠️ Galería de imágenes
+
+
+// 🛠️ Galería de certificados
 const galleryHandler = (() => {
   const fullscreenContainer = document.querySelector(".fullscreen-container");
   const fullscreenImage = fullscreenContainer.querySelector(".fullscreen-image");
-
+  
   document.querySelectorAll(".gallery img").forEach((img) => {
     img.addEventListener("click", () => {
       fullscreenImage.src = img.src;
       fullscreenContainer.classList.add("visible");
     });
   });
-
+  
   fullscreenContainer.addEventListener("click", () => {
     fullscreenContainer.classList.remove("visible");
     fullscreenImage.src = "";
   });
 })();
+
+// 🛠️ Galería de certificados
+document.addEventListener("DOMContentLoaded", () => {
+  const carrusel = document.getElementById("carrusel");
+  const images = Array.from(carrusel.children);
+
+  // Clonar las imágenes al inicio y al final
+  const firstClone = images[0].cloneNode(true);
+  const lastClone = images[images.length - 1].cloneNode(true);
+
+  carrusel.insertBefore(lastClone, images[0]); // Insertar el clon al inicio
+  carrusel.appendChild(firstClone); // Insertar el clon al final
+
+  // Ajustar el scroll inicial al primer elemento real
+  const imageWidth = carrusel.children[0].offsetWidth;
+  carrusel.scrollLeft = imageWidth;
+
+  carrusel.addEventListener("scroll", () => {
+    // Volver al inicio si llegas al final
+    if (carrusel.scrollLeft >= (imageWidth * (images.length + 1))) {
+      carrusel.scrollLeft = imageWidth;
+    }
+    // Volver al final si estás al principio
+    if (carrusel.scrollLeft <= 0) {
+      carrusel.scrollLeft = imageWidth * images.length;
+    }
+  });
+});
