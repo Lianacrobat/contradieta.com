@@ -211,8 +211,6 @@ header {
   border-radius: 25px;
 }
 
-/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
-
 /* ⚠️⚠️⚠️ 2 PARA QUIEN ES EL CURSO ⚠️⚠️⚠️ */
 .course-section {
   text-align: center;
@@ -228,8 +226,17 @@ header {
 .cards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 5px;
-  justify-items: center;
+  /* 2 columnas por defecto (teléfonos) */
+  gap: 10px;
+  /* Espacio entre las tarjetas */
+}
+
+@media (min-width: 768px) {
+
+  /* Cambia a 4 columnas en pantallas más anchas */
+  .cards-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .card {
@@ -237,7 +244,7 @@ header {
   border-radius: 12px;
   padding: 5px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  position: relative;
 }
 
 .dark-theme .card {
@@ -252,24 +259,10 @@ header {
   overflow: hidden;
 }
 
-.card h3 {
-  font-size: .8rem;
-  margin: 5px 0;
-  font-weight: 500;
-}
-
 .card p {
   font-size: .7rem;
-  color: #555;
-  margin-bottom: 5px;
-}
-
-.dark-theme .card p {
-  color: #8f8f8f;
-}
-
-.solution {
-  color: green;
+  font-weight: 400;
+  text-align: left;
 }
 
 
@@ -277,20 +270,18 @@ header {
 .card-checkbox-container {
   display: flex;
   align-items: center;
-  font-size: .8rem;
   cursor: pointer;
 }
 
-/* Estilo base del checkbox */
+/* Checkbox base */
 .card-checkbox {
   appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ccc;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
-
 }
 
 /* Estado no seleccionado */
@@ -299,22 +290,26 @@ header {
   border-color: #ffffff;
 }
 
+.dark-theme .card-checkbox:checked {
+  background-color: #212121;
+  border-color: #212121;
+}
+
 /* Icono de check dentro del checkbox */
 .card-checkbox:checked::before {
   content: "❌";
   display: block;
-  margin-left: -13px;
-  font-size: 2rem;
+  margin-left: -2px;
   text-align: center;
-  line-height: 12px;
+  line-height: 13px;
 }
 
 /* Cambiar el color del texto cuando está seleccionado */
-.card-checkbox span {
+.card-checkbox p {
   font-size: .8rem;
 }
 
-.card-checkbox:checked+span {
+.card-checkbox:checked+p {
   color: #af4c4c;
   font-weight: bold;
 }
@@ -324,14 +319,9 @@ header {
   border-color: #d72828;
 }
 
-/* Aplicar escala de grises cuando el checkbox está seleccionado */
-.card-checkbox:checked~.card-img {
-  filter: grayscale(1);
-  opacity: 0.7;
-  /* Opcional */
-}
 
-/* certificados*/
+
+/* 🛑 certificados*/
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -504,6 +494,7 @@ header {
 /* Estilo para las listas dentro del acordeón */
 .accordion-content li {
   margin-bottom: 20px;
+  margin-left: -40px;
   /* Reducido el margen para que se vea más compacto */
 }
 
@@ -526,6 +517,10 @@ header {
   height: 450px;
   background-image: url('./src/backgroundPhone.webp');
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* Hace que el fondo sea estático */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -535,7 +530,10 @@ header {
 
 .dark-theme .carrusel-container {
   background-image: url('./src/backgroundPhone2.webp');
+  background-attachment: fixed;
+  /* También aplicamos fondo estático aquí */
 }
+
 
 /* Carrusel horizontal */
 .carrusel {
@@ -568,10 +566,51 @@ header {
   transform: scale(1.3);
 }
 
-/* ⚠️⚠️⚠️ Footer ⚠️⚠️⚠️ */
+/* ⚠️⚠️⚠️ resultados ⚠️⚠️⚠️ */
 
+.results-section {
+  text-align: left;
+  padding: 20px;
+}
+
+.results-title h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.result-item:hover {
+  transform: scale(1.03);
+
+}
+
+.icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.result-item p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ⚠️⚠️⚠️ Footer ⚠️⚠️⚠️ */
 footer {
-  background-color: #ffffff;
+  background-color: #f8f9fa;
+  /* Fondo claro y moderno */
   text-align: center;
   position: fixed;
   left: 0;
@@ -581,24 +620,64 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  /* Sombra para destacar el footer */
+  padding: 5px 0;
+}
+
+.dark-theme footer {
+  background-color: #343a40;
+  /* Fondo oscuro en el modo oscuro */
 }
 
 footer .social-icons {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
+  /* Espacio más amplio entre elementos */
+  padding: 10px;
 }
 
 footer .social-icons a {
-  padding: 15px;
-  color: #236C5B;
-  text-decoration: none;
+  padding: 15px 20px;
 }
 
 footer .social-icons a:hover {
   text-decoration: underline;
 }
 
+.botonComprar {
+  display: inline-block;
+  padding: 10px 25px;
+  /* Botón más grande */
+  font-size: 1.1rem;
+  /* Fuente ligeramente más grande */
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  /* Color azul moderno */
+  border: none;
+  /* Sin bordes */
+  border-radius: 25px;
+  /* Bordes redondeados */
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  /* Animación suave */
+}
 
-/* 🛑⚪🛑⚪🛑⚪🛑⚪🛑⚪🛑*/
-/* ⚠️⚠️⚠️ Estilos básicos del acordeón ⚠️⚠️⚠️ */
+.botonComprar:hover {
+  background-color: #0056b3;
+
+}
+
+.botonComprar:active {
+  background-color: #003f8c;
+  transform: scale(1);
+}
+
+footer #timer2 {
+  font-size: 0.9rem;
+  font-weight: normal;
+  margin-left: 15px;
+}
