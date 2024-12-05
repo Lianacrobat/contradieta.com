@@ -83,10 +83,9 @@
 </head>
 <body>
     <div id="game-container">
-        <div id="video-container">
+        <div id="video-container" style="display: none;">
             <video id="video" autoplay playsinline></video>
             <div id="face-guide">
-                <!-- SVG para la guía del rostro -->
                 <svg viewBox="0 0 400 600">
                     <circle cx="200" cy="250" r="80" stroke="white" stroke-width="3" fill="none" stroke-dasharray="8,8" />
                     <line x1="200" y1="150" x2="200" y2="350" stroke="white" stroke-width="2" stroke-dasharray="4,4" />
@@ -95,14 +94,13 @@
             </div>
         </div>
         <div id="game-controls">
-            <button onclick="capturePhoto()">Tomar Foto</button>
+            <button id="start-button" onclick="startGame()">Comenzar</button>
             <p id="loading-message">Procesando tu foto...</p>
         </div>
     </div>
 
     <script>
-        const video = document.getElementById('video');
-        const loadingMessage = document.getElementById('loading-message');
+        let videoStream = null;
 
         // Inicializar la cámara
         async function initializeCamera() {
@@ -112,19 +110,34 @@
 
             try {
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                const video = document.getElementById('video');
                 video.srcObject = stream;
+                videoStream = stream; // Guardar el stream para cerrarlo después
             } catch (error) {
                 console.error('Error al acceder a la cámara:', error);
                 alert('No se pudo acceder a la cámara. Verifica los permisos.');
             }
         }
 
-        // Capturar foto y enviar al servidor
-        async function capturePhoto() {
-            loadingMessage.style.display = 'block';
+        // Iniciar el juego
+        function startGame() {
+            const videoContainer = document.getElementById('video-container');
+            const startButton = document.getElementById('start-button');
+            videoContainer.style.display = 'block'; // Mostrar el visor
+            startButton.style.display = 'none'; // Ocultar el botón de inicio
+            initializeCamera();
+        }
 
+        // Capturar foto y cerrar la cámara
+        async function capturePhoto() {
+            const video = document.getElementById('video');
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
+            const loadingMessage = document.getElementById('loading-message');
+            const startButton = document.getElementById('start-button');
+            const videoContainer = document.getElementById('video-container');
+
+            loadingMessage.style.display = 'block'; // Mostrar mensaje de carga
 
             // Configurar canvas con las dimensiones del video
             canvas.width = video.videoWidth;
@@ -150,13 +163,24 @@
                 } catch (error) {
                     console.error('Error de red:', error.message);
                 } finally {
+                    // Ocultar el visor y cerrar la cámara
                     loadingMessage.style.display = 'none';
+                    videoContainer.style.display = 'none';
+                    startButton.style.display = 'block'; // Mostrar el botón de inicio
+
+                    if (videoStream) {
+                        videoStream.getTracks().forEach(track => track.stop());
+                        videoStream = null; // Liberar el stream
+                    }
                 }
             }, 'image/jpeg');
         }
 
-        // Iniciar la cámara al cargar la página
-        window.onload = initializeCamera;
+        // Asignar la función de captura al botón
+        document.getElementById('start-button').onclick = () => {
+            startGame();
+            setTimeout(() => capturePhoto(), 3000); // Capturar foto después de 3 segundos
+        };
     </script>
 </body>
 </html>
