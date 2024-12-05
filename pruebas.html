@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Course</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+
+    <style>
+        /* Ajustamos el espacio entre las secciones */
+        .section-spacing {
+            margin-bottom: 5rem;
+            /* Menos espacio entre secciones */
+        }
+
+        /* Estilo para los problemas seleccionados */
+        .selected {
+            border-color: #bb4848 !important;
+            background-color: #f0fdf4;
+        }
+
+        /* Estilo para los problemas seleccionados */
+        .problem-box.selected {
+            border: 2px solid #af4c4c;
+            /* Borde verde cuando está seleccionado */
+            background-color: #faeaea;
+            /* Fondo suave verde claro */
+            transform: scale(1.02);
+            /* Aumenta ligeramente el tamaño cuando se selecciona */
+        }
+
+        .problem-box.selected img {
+            filter: brightness(80%);
+            filter: grayscale(100%)
+                /* Aumenta el contraste de la imagen seleccionada */
+        }
+
+        .problem-box.selected h3,
+        .problem-box.selected p {
+            filter: grayscale(100%);
+
+            color: #af4c4c;
+            /* Color del texto verde cuando está seleccionado */
+        }
+
+        /* Transición suave para los efectos */
+        .problem-box {
+            transition: transform 0.2s ease, background-color 0.3s ease, border 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Sección 1: Nutrition Course Cover -->
+    <div class="bg-gradient-to-br from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8 section-spacing">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="flex flex-col lg:flex-row">
+                    <!-- Imagen -->
+                    <div class="lg:w-1/2">
+                        <img src="/src/cover01.png" alt="Healthy food arrangement" class="h-full w-full object-cover">
+                    </div>
+                    <!-- Contenido centrado verticalmente -->
+                    <div class="lg:w-1/2 p-8 sm:p-12 flex items-center">
+                        <div>
+                            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">¡PIERDE PESO HOY!</h1>
+                            <div class="bg-green-50 rounded-lg p-6 mb-8">
+                                <p class="text-lg text-gray-700 leading-relaxed">
+                                    ¿Cansado de dietas frustrantes y métodos que no funcionan? Este curso de nutrición
+                                    está diseñado para transformar tu
+                                    enfoque hacia la pérdida de peso, ayudándote a alcanzar tus metas sin sacrificios
+                                    extremos ni complicaciones.
+                                </p>
+                            </div>
+                            <div class="mb-8">
+                                <p class="text-sm text-gray-500 mb-2">La oferta por tiempo limitado finaliza en:</p>
+                                <div class="flex justify-center space-x-8 text-center">
+                                    <div class="border-b-2 border-gray-200 p-2 w-16">
+                                        <span id="hours" class="text-3xl font-light text-gray-800">24</span>
+                                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Hours</p>
+                                    </div>
+                                    <div class="border-b-2 border-gray-200 p-2 w-16">
+                                        <span id="minutes" class="text-3xl font-light text-gray-800">00</span>
+                                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Minutes</p>
+                                    </div>
+                                    <div class="border-b-2 border-gray-200 p-2 w-16">
+                                        <span id="seconds" class="text-3xl font-light text-gray-800">00</span>
+                                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Seconds</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button
+                                    class="bg-green-600 hover:bg-green-700 text-white text-lg font-semibold px-8 py-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                                    ¡Quiero perder peso!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Sección 2: Problemas -->
+    <div class="max-w-7xl mx-auto p-5">
+        <h2 class="text-3xl font-bold text-center mb-8">SELECCIONA TUS PREOCUPACIONES</h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform cursor-pointer problem-box"
+                onclick="toggleSelection(this)">
+                <img src="/src/gif01.webp" alt="Diet Issues" class="w-full h-48 object-cover">
+                <div class="p-2">
+                    <h3 class="font-bold text-l mb-2">Frustración 😟</h3>
+                    <p class="text-gray-600 text-xs">Has probado todas las dietas existentes en internet y no ves
+                        cambios reales.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform cursor-pointer problem-box"
+                onclick="toggleSelection(this)">
+                <img src="/src/gif02.webp" alt="Sleep Issues" class="w-full h-48 object-cover">
+                <div class="p-2">
+                    <h3 class="font-bold text-l mb-2">Efecto rebote 😡</h3>
+                    <p class="text-gray-600 text-xs">Después de cada experimento con la pérdida de peso, el peso vuelve
+                        a subir.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform cursor-pointer problem-box"
+                onclick="toggleSelection(this)">
+                <img src="/src/gif03.webp" alt="Stress Issues" class="w-full h-48 object-cover">
+                <div class="p-2">
+                    <h3 class="font-bold text-l mb-2">Estrés 😫</h3>
+                    <p class="text-gray-600 text-xs">Estás cansada de torturar a tu cuerpo y sientes que debe ser
+                        diferente,
+                        pero aún no sabes cómo?</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform cursor-pointer problem-box"
+                onclick="toggleSelection(this)">
+                <img src="/src/gif04.webp" alt="Energy Issues" class="w-full h-48 object-cover">
+                <div class="p-2">
+                    <h3 class="font-bold text-l mb-2">Dudas 🤨</h3>
+                    <p class="text-gray-600 text-xs">Tienes un montón de mitos en la cabeza sobre nutrición y pérdida de
+                        peso, y
+                        ya no sabes qué es verdad y qué es mentira?</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform cursor-pointer problem-box"
+                onclick="toggleSelection(this)">
+                <img src="/src/gif05.webp" alt="Workout Issues" class="w-full h-48 object-cover">
+                <div class="p-2">
+                    <h3 class="font-bold text-l mb-2">Restricción 🤐</h3>
+                    <p class="text-gray-600 text-xs">Te obsesionas con la comida y la pérdida de peso, dividiendo los
+                        alimentos
+                        entre buenos y malos, y eliminando tus favoritos por no saber disfrutar de los antojos mientras
+                        adelgazas.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform cursor-pointer problem-box"
+                onclick="toggleSelection(this)">
+                <img src="/src/gif06.webp" alt="Nutrition Issues" class="w-full h-48 object-cover">
+                <div class="p-2">
+                    <h3 class="font-bold text-l mb-2">Desesperanza 😔</h3>
+                    <p class="text-gray-600 text-xs">
+                        ¿Sientes que nada puede cambiar y estás condenada a vivir atrapada en un cuerpo que no te gusta?
+                        Por más que lo intentes, parece que cada esfuerzo te lleva al mismo lugar, sin resultados
+                        duraderos.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform cursor-pointer problem-box"
+                onclick="toggleSelection(this)">
+                <img src="/src/gif07.webp" alt="Workout Issues" class="w-full h-48 object-cover">
+                <div class="p-2">
+                    <h3 class="font-bold text-l mb-2">Bienestar 🌱</h3>
+                    <p class="text-gray-600 text-xs">¿Te gustaría no solo perder peso, sino también mejorar tu salud y
+                        sentirte
+                        mejor contigo misma?</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform cursor-pointer problem-box"
+                onclick="toggleSelection(this)">
+                <img src="/src/gif08.webp" alt="Workout Issues" class="w-full h-48 object-cover">
+                <div class="p-2">
+                    <h3 class="font-bold text-l mb-2">Sostenibilidad ♻️</h3>
+                    <p class="text-gray-600 text-xs">¿Te gustaría lograr una pérdida de peso que se mantenga de forma
+                        permanente
+                        y no sea solo un cambio temporal?</p>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="mt-8 text-center">
+            <button onclick="calculateResults()"
+                class="bg-red-600 text-white px-8 py-3 rounded-full font-bold hover:bg-red-700 transition-colors">Obtén
+                un regalo 🎁</button>
+            <div id="results" class="mt-4 text-xl font-semibold hidden"></div>
+            <a href="#"
+                class="hidden mt-4 inline-block bg-green-600 text-white px-8 py-3 rounded-full font-bold hover:bg-green-700 transition-colors"
+                id="courseLink">Acceder al Curso</a>
+        </div>
+    </div>
+
+    <!-- sección3 Curso index -->
+    <div class="container mx-auto px-4 py-8 max-w-7xl" data-pc-el-id="div-10-87">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8" data-pc-el-id="h1-11-11">Nutrition Course Index</h1>
+        <div class="space-y-4" data-pc-el-id="div-12-86">
+
+            <div class="border rounded-lg shadow-sm" data-pc-el-id="div-13-48">
+                <button class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none rounded-lg"
+                    onclick="toggleModule('module1')" aria-expanded="false" aria-controls="module1Content"
+                    data-pc-el-id="button-14-19">
+                    <div class="flex items-center justify-between" data-pc-el-id="div-15-18">
+                        <span class="text-lg font-semibold text-gray-700" data-pc-el-id="span-16-16">Урок 1.
+                            Переконання, які заважають вам схуднути.</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform" id="module1Icon" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" data-pc-el-id="svg-17-17">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                data-pc-el-id="path-17-17"></path>
+                        </svg>
+                    </div>
+                </button>
+                <div id="module1Content" class="hidden px-6 py-4 bg-white border-t" data-pc-el-id="div-20-47">
+                    <ul class="space-y-4" data-pc-el-id="ul-21-46">
+                        <li data-pc-el-id="li-22-29">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class1_1')"
+                                data-pc-el-id="button-23-25">
+                                <span class="font-medium" data-pc-el-id="span-24-24">Обмежуючі переконання та
+                                    їх вплив</span>
+                            </button>
+                            <div id="class1_1" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-26-28">
+                                розбираємо обмежуючі переконання, які заважають вам схуднути та те, як вони впливають на
+                                вашу поведінку
+                            </div>
+                        </li>
+                        <li data-pc-el-id="li-30-37">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class1_2')"
+                                data-pc-el-id="button-31-33">
+                                <span class="font-medium" data-pc-el-id="span-32-32">Підтримуючі переконання: ключ до
+                                    мотивації та дій</span>
+                            </button>
+                            <div id="class1_2" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-34-36">
+                                формуємо підтримуючі переконання, які слугуватимуть мотивацією та спонукатимуть до дій
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border rounded-lg shadow-sm" data-pc-el-id="div-50-85">
+                <button class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none rounded-lg"
+                    onclick="toggleModule('module2')" aria-expanded="false" aria-controls="module2Content"
+                    data-pc-el-id="button-51-56">
+                    <div class="flex items-center justify-between" data-pc-el-id="div-52-55">
+                        <span class="text-lg font-semibold text-gray-700" data-pc-el-id="span-53-53">Урок 2. Неефективні
+                            методи схуднення</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform" id="module2Icon" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" data-pc-el-id="svg-54-54">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                data-pc-el-id="path-54-54"></path>
+                        </svg>
+                    </div>
+                </button>
+                <div id="module2Content" class="hidden px-6 py-4 bg-white border-t" data-pc-el-id="div-57-84">
+                    <ul class="space-y-4" data-pc-el-id="ul-58-83">
+                        <li data-pc-el-id="li-59-66">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class2_1')"
+                                data-pc-el-id="button-60-62">
+                                <span class="font-medium" data-pc-el-id="span-61-61">Топ помилок і неефективні
+                                    методи схуднення</span>
+                            </button>
+                            <div id="class2_1" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-63-65">
+                                говоримо про неефективні методи схуднення та топ помилок, яких допускаються люди у
+                                спробах схуднути
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="border rounded-lg shadow-sm" data-pc-el-id="div-50-85">
+                <button class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none rounded-lg"
+                    onclick="toggleModule('module3')" aria-expanded="false" aria-controls="module3Content"
+                    data-pc-el-id="button-51-56">
+                    <div class="flex items-center justify-between" data-pc-el-id="div-52-55">
+                        <span class="text-lg font-semibold text-gray-700" data-pc-el-id="span-53-53">Урок 3. Як схуднути
+                            безпечно для здоровʼя та краси</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform" id="module3Icon" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" data-pc-el-id="svg-54-54">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                data-pc-el-id="path-54-54"></path>
+                        </svg>
+                    </div>
+                </button>
+
+                <div id="module3Content" class="hidden px-6 py-4 bg-white border-t" data-pc-el-id="div-57-84">
+                    <ul class="space-y-4" data-pc-el-id="ul-58-83">
+                        <li data-pc-el-id="li-59-66">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class3_1')"
+                                data-pc-el-id="button-60-62">
+                                <span class="font-medium" data-pc-el-id="span-61-61">Clase 1</span>
+                            </button>
+                            <div id="class3_1" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-63-65">
+                                говоримо про основні принципи здорового схуднення.
+                            </div>
+                        </li>
+                        <li data-pc-el-id="li-67-74">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class3_2')"
+                                data-pc-el-id="button-68-70">
+                                <span class="font-medium" data-pc-el-id="span-69-69">Clase 2</span>
+                            </button>
+                            <div id="class3_2" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-71-73">
+                                про те, який темп схуднення є оптимальним.
+                            </div>
+                        </li>
+                        <li data-pc-el-id="li-75-82">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class3_3')"
+                                data-pc-el-id="button-76-78">
+                                <span class="font-medium" data-pc-el-id="span-77-77">Clase 3</span>
+                            </button>
+                            <div id="class3_3" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-79-81">
+                                що та скільки їсти, щоб схуднути.
+                            </div>
+                        </li>
+                        <li data-pc-el-id="li-75-82">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class3_4')"
+                                data-pc-el-id="button-76-78">
+                                <span class="font-medium" data-pc-el-id="span-77-77">Clase 4</span>
+                            </button>
+                            <div id="class3_4" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-79-81">
+                                як зрозуміти, який дефіцит зробити.
+                            </div>
+                        </li>
+                        <li data-pc-el-id="li-75-82">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class3_5')"
+                                data-pc-el-id="button-76-78">
+                                <span class="font-medium" data-pc-el-id="span-77-77">Clase 5</span>
+                            </button>
+                            <div id="class3_5" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-79-81">
+                                покрокова інструкція схуднення та як працювати з ефектом плато.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- modulo 4 -->
+            <div class="border rounded-lg shadow-sm" data-pc-el-id="div-50-85">
+                <button class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none rounded-lg"
+                    onclick="toggleModule('module4')" aria-expanded="false" aria-controls="module4Content"
+                    data-pc-el-id="button-51-56">
+                    <div class="flex items-center justify-between" data-pc-el-id="div-52-55">
+                        <span class="text-lg font-semibold text-gray-700" data-pc-el-id="span-53-53"> Урок 4. Що таке
+                            БЖВ?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform" id="module4Icon" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" data-pc-el-id="svg-54-54">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                data-pc-el-id="path-54-54"></path>
+                        </svg>
+                    </div>
+                </button>
+                <div id="module4Content" class="hidden px-6 py-4 bg-white border-t" data-pc-el-id="div-57-84">
+                    <ul class="space-y-4" data-pc-el-id="ul-58-83">
+                        <li data-pc-el-id="li-59-66">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class4_1')"
+                                data-pc-el-id="button-60-62">
+                                <span class="font-medium" data-pc-el-id="span-61-61">title</span>
+                            </button>
+                            <div id="class4_1" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-63-65">
+                                говоримо про неефективні методи схуднення та топ помилок, яких допускаються люди у
+                                спробах схуднути
+                            </div>
+                        </li>
+                        <li data-pc-el-id="li-59-66">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class4_2')"
+                                data-pc-el-id="button-60-62">
+                                <span class="font-medium" data-pc-el-id="span-61-61">title</span>
+                            </button>
+                            <div id="class4_2" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-63-65">
+                                як розподілити та збалансувати БЖВ на тарілці
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- modulo 5 -->
+            <div class="border rounded-lg shadow-sm" data-pc-el-id="div-50-85">
+                <button class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none rounded-lg"
+                    onclick="toggleModule('module5')" aria-expanded="false" aria-controls="module5Content"
+                    data-pc-el-id="button-51-56">
+                    <div class="flex items-center justify-between" data-pc-el-id="div-52-55">
+                        <span class="text-lg font-semibold text-gray-700" data-pc-el-id="span-53-53">Урок 5. Харчування
+                            без розрахунків ккал та БЖВ</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform" id="module5Icon" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" data-pc-el-id="svg-54-54">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                data-pc-el-id="path-54-54"></path>
+                        </svg>
+                    </div>
+                </button>
+                <div id="module5Content" class="hidden px-6 py-4 bg-white border-t" data-pc-el-id="div-57-84">
+                    <ul class="space-y-4" data-pc-el-id="ul-58-83">
+                        <li data-pc-el-id="li-59-66">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class5_1')"
+                                data-pc-el-id="button-60-62">
+                                <span class="font-medium" data-pc-el-id="span-61-61">Топ помилок і неефективні
+                                    методи схуднення</span>
+                            </button>
+                            <div id="class5_1" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-63-65">
+                                навчу вас складати здорову та збалансовану тарілку без підрахунків та заморочок
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- modulo 6 -->
+            <div class="border rounded-lg shadow-sm" data-pc-el-id="div-50-85">
+                <button class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none rounded-lg"
+                    onclick="toggleModule('module6')" aria-expanded="false" aria-controls="module6Content"
+                    data-pc-el-id="button-51-56">
+                    <div class="flex items-center justify-between" data-pc-el-id="div-52-55">
+                        <span class="text-lg font-semibold text-gray-700" data-pc-el-id="span-53-53">Урок 6. Як
+                            запобігти зривам та зробити схуднення максимально комфортним?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform" id="module6Icon" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" data-pc-el-id="svg-54-54">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                data-pc-el-id="path-54-54"></path>
+                        </svg>
+                    </div>
+                </button>
+                <div id="module6Content" class="hidden px-6 py-4 bg-white border-t" data-pc-el-id="div-57-84">
+                    <ul class="space-y-4" data-pc-el-id="ul-58-83">
+                        <li data-pc-el-id="li-59-66">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class6_1')"
+                                data-pc-el-id="button-60-62">
+                                <span class="font-medium" data-pc-el-id="span-61-61">title</span>
+                            </button>
+                            <div id="class6_1" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-63-65">
+                                розкажу про найефективніші інструменти, які будуть профілактикою зривів
+                            </div>
+                        </li>
+                        <li data-pc-el-id="li-59-66">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class6_2')"
+                                data-pc-el-id="button-60-62">
+                                <span class="font-medium" data-pc-el-id="span-61-61">title</span>
+                            </button>
+                            <div id="class6_2" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-63-65">
+                                навчу вас правильно вписувати свої улюблені продукти в здоровий раціон
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- modulo 7 -->
+            <div class="border rounded-lg shadow-sm" data-pc-el-id="div-50-85">
+                <button class="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none rounded-lg"
+                    onclick="toggleModule('module7')" aria-expanded="false" aria-controls="module7Content"
+                    data-pc-el-id="button-51-56">
+                    <div class="flex items-center justify-between" data-pc-el-id="div-52-55">
+                        <span class="text-lg font-semibold text-gray-700" data-pc-el-id="span-53-53">Урок 7. Що робити,
+                            щоб результат тримався завжди?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform" id="module7Icon" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" data-pc-el-id="svg-54-54">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                data-pc-el-id="path-54-54"></path>
+                        </svg>
+                    </div>
+                </button>
+                <div id="module7Content" class="hidden px-6 py-4 bg-white border-t" data-pc-el-id="div-57-84">
+                    <ul class="space-y-4" data-pc-el-id="ul-58-83">
+                        <li data-pc-el-id="li-59-66">
+                            <button class="w-full text-left hover:text-blue-600" onclick="toggleClass('class7_1')"
+                                data-pc-el-id="button-60-62">
+                                <span class="font-medium" data-pc-el-id="span-61-61">Title</span>
+                            </button>
+                            <div id="class7_1" class=" mt-2 pl-4 text-gray-600 text-sm" data-pc-el-id="div-63-65">
+                                поговоримо про фактори успішної та комфортної зміни способу життя
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonios -->
+    <div class="bg-gradient-to-b from-gray-50 to-white py-16 px-4 sm:px-10 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Testimonios</h2>
+                <p class="text-xl text-gray-600">Real testimonials from people who transformed their lives through our
+                    nutrition course.</p>
+            </div>
+
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial Slides will be dynamically inserted -->
+                </div>
+                <br><br>
+                <br><br>
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resultados -->
+    <div class="container mx-auto px-4 py-16 max-w-7xl">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Розкрийте свій потенціал здоров'я з нашим
+                курсом нутриціології!</h1>
+            <p class="text-xl text-gray-600">Трансформуйте своє життя через правильне харчування та здорові звички</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-start space-x-4">
+                    <span class="text-3xl">🍽️</span>
+                    <p class="text-gray-700">Навчишся складати здоровий та смачний раціон, який сприятиме адекватному
+                        схудненню.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-start space-x-4">
+                    <span class="text-3xl">🫀</span>
+                    <p class="text-gray-700">Зможеш не тільки схуднути назавжди, а також покращити показники свого
+                        здоров'я.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-start space-x-4">
+                    <span class="text-3xl">🔄</span>
+                    <p class="text-gray-700">Повністю зміниш свій підхід до схуднення.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-start space-x-4">
+                    <span class="text-3xl">🧠</span>
+                    <p class="text-gray-700">Розкладеш по поличках всю інформацію про здорове схуднення.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-start space-x-4">
+                    <span class="text-3xl">⚡</span>
+                    <p class="text-gray-700">Матимеш більшу кількість енергії та краще самопочуття.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-start space-x-4">
+                    <span class="text-3xl">🍫</span>
+                    <p class="text-gray-700">Навчишся харчуватися без обмежень.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 md:col-span-2">
+                <div class="flex items-start space-x-4">
+                    <span class="text-3xl">🧘</span>
+                    <p class="text-gray-700">Зможеш відновити зв'язок тіла з розумом.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button
+                class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full text-xl transition-colors duration-300 transform hover:scale-105">
+                Записатися на курс зараз
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Temporizador para la Sección 1
+        function updateTimer() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setHours(24, 0, 0, 0);
+
+            const timeDiff = tomorrow - now;
+            const hours = Math.floor(timeDiff / 1000 / 60 / 60);
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer(); // inicializa el temporizador
+
+        // Función para marcar problemas de salud como seleccionados
+        function toggleSelection(element) {
+            const isSelected = element.classList.contains('selected');
+            if (isSelected) {
+                element.classList.remove('selected');
+            } else {
+                element.classList.add('selected');
+            }
+        }
+
+        // Función para marcar problemas de salud como seleccionados
+        function toggleSelection(element) {
+            const isSelected = element.classList.contains('selected');
+            if (isSelected) {
+                element.classList.remove('selected');
+            } else {
+                element.classList.add('selected');
+            }
+        }
+
+        // Función para calcular los resultados de las selecciones
+        function calculateResults() {
+            const selected = document.querySelectorAll('.selected');
+            let resultsText = "Estás enfrentando problemas con: ";
+            if (selected.length > 0) {
+                selected.forEach(item => {
+                    const title = item.querySelector('h3').textContent;
+                    resultsText += `\n- ${title}`;
+                });
+                document.getElementById("results").textContent = resultsText;
+                document.getElementById("results").classList.remove('hidden');
+                document.getElementById("courseLink").classList.remove('hidden');
+            } else {
+                document.getElementById("results").textContent = "Por favor selecciona al menos un problema.";
+                document.getElementById("results").classList.remove('hidden');
+            }
+        }
+
+        // sección 3 index del curso
+        function toggleModule(moduleId) {
+            const content = document.getElementById(moduleId + 'Content');
+            const icon = document.getElementById(moduleId + 'Icon');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        function toggleClass(classId) {
+            const content = document.getElementById(classId);
+            content.classList.toggle('hidden');
+        }
+        // Testimonios
+        const testimonials = [
+            {
+                id: 1,
+                name: "Gunya Stas",
+                image: "/src/testimonio1.webp",
+                quote: "Дуже все сподобалось, такий цікавий підхід, в плані того, що ми не просто рухалися до якоїсь цілі, а рухалися грамотно і до найголовнішої цілі - це зміни мого стилю життя в плані здорового харчування та мого самопочуття. Все чітко, зрозуміло, видно, що тобі не пофіг, і для мене це важливо. Класний зворотній зв'язок, фідбек, коментарі, підтримка дисципліни. І сподобалося, що ти не сварила, а нормально пояснювала, що буде, якщо я робитиму так, що буде, якщо робитиму інакше. Не казала якщо ти так будеш робити, то в тебе нічого не вийде, а нормально пояснювала чому так відбувається, і що з цим робити. Булаі мотивація, була і підтримка, ну взагалі все було, тому дуже задоволений, все топ, мені сподобалось. Дякую!"
+            },
+            {
+                id: 2,
+                name: "Катерина",
+                image: "/src/testimonio4.webp",
+                quote: "Дуже тобі дякую за твою роботу та мотивацію🥰я вже по памʼяті складаю їжу в тарілку і по закупці  продуктів обираю лише те,  що дійсно потрібно, а не все підряд  і побільше солодощів [Chuckle] ти мені дала поняття, що треба їсти щоб схуднути, а це для мене завжди було важко) дякую🫶🏻 я буду і надалі виробляти харчові звички щоб це було звичним раціоном на кожен день 🤤"
+            },
+            {
+                id: 3,
+                name: "Ілона",
+                image: "/src/testimonio2.webp",
+                quote: "The personalized approach and detailed meal plans helped me achieve my fitness goals faster than ever before."
+            },
+            {
+                id: 4,
+                name: "Gunya Anna",
+                image: "/src/testimonio3.webp",
+                quote: "The personalized approach and detailed meal plans helped me achieve my fitness goals faster than ever before."
+            },
+            {
+                id: 5,
+                name: "Michael Chen",
+                image: "/src/testimonio0.webp",
+                quote: "The personalized approach and detailed meal plans helped me achieve my fitness goals faster than ever before."
+            },
+            {
+                id: 6,
+                name: "Michael Chen",
+                image: "/src/testimonio0.webp",
+                quote: "The personalized approach and detailed meal plans helped me achieve my fitness goals faster than ever before."
+            },
+            {
+                id: 7,
+                name: "Michael Chen",
+                image: "/src/testimonio0.webp",
+                quote: "The personalized approach and detailed meal plans helped me achieve my fitness goals faster than ever before."
+            },
+            // Add more testimonials as needed
+        ];
+
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
+
+        testimonials.forEach(({ image, name, role, quote }) => {
+            const slide = document.createElement('div');
+            slide.classList.add('swiper-slide', 'w-full', 'md:w-[400px]', 'px-4');
+
+            slide.innerHTML = `
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl">
+                <div class="relative h-48">
+                    <img src="${image}" alt="Picture of ${name}" class="w-full h-full object-cover rounded-t-xl"
+                    onerror="this.src='https://via.placeholder.com/400';" />
+                </div>
+                <div class="p-4">
+                    <div>
+                        <span class="font-bold text-gray-900">${name}</span>
+                        <br>
+                        <p class="text-gray-600 mb-6 italic">${quote}</p>
+                    </div>
+                </div>
+                </div>
+            `;
+
+            swiperWrapper.appendChild(slide);
+        });
+
+        new Swiper('.mySwiper', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 30,
+                stretch: 0,
+                depth: 150,
+                modifier: 1,
+                slideShadows: false,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+    </script>
+</body>
+
+</html>
